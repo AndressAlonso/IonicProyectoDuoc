@@ -1,0 +1,78 @@
+a{
+  text-decoration: none;
+  color: var(--textocolor)
+}
+
+#fondo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0d0c0c;
+  }
+  
+  #logo img {
+    max-width: 150px; /* Ajusta este valor según tus preferencias */
+    height: auto;
+  }
+  
+  #color {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 320px;
+  }
+  
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'REM', sans-serif;
+  }
+  
+  #enlaces{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #enlace a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'REM', sans-serif;
+    font-size: 14px;
+  }
+  
+  #enlace a:hover {
+    text-decoration: underline;
+  }
+  
+  #boton {
+    margin-top: 15px;
+  }
+  
+  #boton button {
+    background-color: #929191;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'REM', sans-serif;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #boton button:hover {
+    background-color: #929191;
+  }
