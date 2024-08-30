@@ -1,15 +1,22 @@
 <ion-content [fullscreen]="true">
 
-  
+
   <div id="viajeInputs">
-    <h3>Viaje (ingresa su viaje de destino, cantidad de pasajeros que puede llevar y costo por persona)</h3>
+    <h3>Registra tu Viaje</h3>
     <div id="inputs">
-      <ion-input aria-label="Dark input" color="dark" placeholder="" label="Viaje Retorno" labelPlacement="stacked"></ion-input>
-    <ion-input aria-label="Dark input" label="Cantidad de pasajeros" labelPlacement="stacked" color="dark" placeholder=""></ion-input>
-    <ion-input aria-label="Dark input" label="Costo por Persona" labelPlacement="stacked" color="dark" placeholder=""></ion-input>
+      <ion-input type="ViajeDestino" fill="solid" label="Destino" labelPlacement="floating"
+        helperText="Ingresa tu destino" errorText=""></ion-input>
+      <ion-input type="Conductor" fill="solid" label="Conductor" labelPlacement="floating"
+        helperText="Ingresa el nombre del conductor" errorText=""></ion-input>
+      <ion-input type="CantidadPasajeros" fill="solid" label="Cantidad de Pasajeros" labelPlacement="floating"
+        helperText="Capacidad de pasajeros que puedes llevar" errorText=""></ion-input>
+      <ion-input type="horaSalida" fill="solid" label="Hora de salida" labelPlacement="floating"
+        helperText="Ingresa hora de salida" errorText=""></ion-input>
+      <ion-input type="CostoxPasajero" fill="solid" label="Monto a cobrar" labelPlacement="floating"
+        helperText="Ingresa tu viaje de destino" errorText=""></ion-input>
+      <ion-input type="ComentariosExtras" fill="solid" label="Comentarios" labelPlacement="floating"
+        helperText="Comentarios (Opcional)" errorText="" aria-label="Dark input" color="dark"></ion-input>
     </div>
-    <ion-button (click)="navegar('resumen-viaje')" color="dark">Ingresar Viaje</ion-button>
+    <ion-button id="btnInViaje" (click)="navegar('resumen-viaje')" color="dark">Registrar Viaje</ion-button>
   </div>
-
-
 </ion-content>
