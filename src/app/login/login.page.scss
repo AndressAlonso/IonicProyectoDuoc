@@ -9,7 +9,7 @@ a{
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #0d0c0c;
+    background-color: var(--fondo1);
   }
   
   #logo img {
@@ -24,6 +24,7 @@ a{
     text-align: center;
     width: 80%;
     max-width: 320px;
+    background-color: var(--log);
   }
   
   
@@ -36,6 +37,10 @@ a{
     font-family: 'Dancing Script', cursive;
     font-family: 'REM', sans-serif;
   }
+  input::placeholder{
+    color: var(--placeholder);
+  }
+
   
   #enlaces{
     margin-top: 10px;
@@ -58,11 +63,7 @@ a{
   
   #boton {
     margin-top: 15px;
-  }
-  
-  #boton button {
-    background-color: #929191;
-    color: white;
+    color: var(--boton1);
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
@@ -73,6 +74,15 @@ a{
     transition: background-color 0.3s ease;
   }
   
-  #boton button:hover {
-    background-color: #929191;
-  }
+  ion-icon{
+    font-size: 5rem;
+    color: var(--boton);
+    top: 5rem;
+}
+#tema{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 3rem;
+  color: var(--tema);
+}

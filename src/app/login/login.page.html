@@ -2,19 +2,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=REM:ital,wght@1,200&display=swap" rel="stylesheet">
+  <!--Icono para cambiar a modo oscuro-->
+<ion-icon src="assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
   <div id="fondo">
     <div id="logo">
-      <img src="assets/logouber.png" alt="">
+      <img src="assets/logouber.png" alt="" id="img">
     </div>
     <div id="color">
+      <!--login de la app-->
       <div id="login">
-        <input type="text" placeholder="Usuario" [(ngModel)]="usuario" (focusout)="login()" id="usuario">
-        <input type="password" placeholder="Contraseña" [(ngModel)]="clave" (focusout)="login()" id="clave">
+        <input type="text" placeholder="Usuario" [(ngModel)]="usuario" (blur)="login()" id="usuario">
+        <input type="password" placeholder="Contraseña" [(ngModel)]="clave" (blur)="login()" id="clave">
       </div>
       <div id="enlaces">
         <a href="#">¿Eres nuevo? Registrate</a>
         <a (click)="navegar('r-contrasena')">¿Has Olvidado tu Contraseña?</a>
-        <ion-button (click)="login()" color="dark" class="boton">Iniciar sesión</ion-button>
+        <ion-button (click)="login()" shape="round" color="dark" id="boton">Iniciar sesión</ion-button>
       </div>
     </div>
   </div>

@@ -1,9 +1,18 @@
-#container{
-  width: 80%;
-  height: 100%;
-  margin: 0 auto;
+#fondo{
   display: flex;
-  height: 20%;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  background-color: var(--fondo1);
 }
+
+#tema{
+position: absolute;
+right: 20px;
+top: 20px;
+font-size: 2.5rem;
+color: var(--tema);
+}
+
+
