@@ -1,6 +1,6 @@
-a{
+*{
   text-decoration: none;
-  color: var(--textocolor)
+  color: var(--log)
 }
 
 #fondo {
@@ -8,7 +8,8 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     background-color: var(--fondo1);
   }
   
@@ -23,8 +24,7 @@ a{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 80%;
-    max-width: 320px;
-    background-color: var(--log);
+    background-color: var(--fondo1);
   }
   
   
@@ -33,12 +33,13 @@ a{
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
+    background-color: var(--fondo1);
     border-radius: 10px;
     font-family: 'Dancing Script', cursive;
     font-family: 'REM', sans-serif;
   }
   input::placeholder{
-    color: var(--placeholder);
+    color: var(--log);
   }
 
   

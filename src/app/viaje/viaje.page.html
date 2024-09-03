@@ -2,21 +2,33 @@
 
 
   <div id="viajeInputs">
-    <h3>Registra tu Viaje</h3>
-    <div id="inputs">
-      <ion-input type="ViajeDestino" fill="solid" label="Destino" labelPlacement="floating"
-        helperText="Ingresa tu destino" errorText=""></ion-input>
-      <ion-input type="Conductor" fill="solid" label="Conductor" labelPlacement="floating"
-        helperText="Ingresa el nombre del conductor" errorText=""></ion-input>
-      <ion-input type="CantidadPasajeros" fill="solid" label="Cantidad de Pasajeros" labelPlacement="floating"
-        helperText="Capacidad de pasajeros que puedes llevar" errorText=""></ion-input>
-      <ion-input type="horaSalida" fill="solid" label="Hora de salida" labelPlacement="floating"
-        helperText="Ingresa hora de salida" errorText=""></ion-input>
-      <ion-input type="CostoxPasajero" fill="solid" label="Monto a cobrar" labelPlacement="floating"
-        helperText="Ingresa tu viaje de destino" errorText=""></ion-input>
-      <ion-input type="ComentariosExtras" fill="solid" label="Comentarios" labelPlacement="floating"
-        helperText="Comentarios (Opcional)" errorText="" aria-label="Dark input" color="dark"></ion-input>
+    <div id="title">
+      <h3>Registra tu Viaje</h3>
+      <ion-icon src="assets/auto.svg" id="autosvg"></ion-icon>
     </div>
-    <ion-button id="btnInViaje" (click)="navegar('resumen-viaje')" color="dark">Registrar Viaje</ion-button>
+    <div id="inputs">
+      <ion-input id="inputV" type="ViajeDestino" label="Destino" labelPlacement="floating"
+        helperText="Ingresa tu destino" errorText="" aria-label="Light input" color="light" autofocus="true"></ion-input>
+
+      <ion-input id="inputV" type="Conductor" label="Conductor" labelPlacement="floating"
+        helperText="Ingresa el nombre del conductor" errorText="" aria-label="Light input" color="light"></ion-input>
+
+      <ion-input id="inputV" type="CantidadPasajeros" label="Cantidad de Pasajeros" labelPlacement="floating"
+        helperText="Capacidad de pasajeros que puedes llevar" errorText="" aria-label="Light input"
+        color="light"></ion-input>
+
+      <ion-input id="inputV" type="horaSalida" label="Hora de salida" labelPlacement="floating"
+        helperText="Ingresa hora de salida" errorText="" aria-label="Light input" color="light"></ion-input>
+
+      <ion-input id="inputV" type="CostoxPasajero" label="Monto a cobrar" labelPlacement="floating"
+        helperText="Ingresa tu viaje de destino" errorText="" aria-label="Light input" color="light"></ion-input>
+
+
+      <ion-input id="inputV" type="ComentariosExtras" label="Comentarios" labelPlacement="floating"
+        helperText="Comentarios (Opcional)" errorText="" aria-label="Light input" color="light"></ion-input>
+
+
+    </div>
+    <ion-button id="btnInViaje" (click)="navegar('resumen-viaje')">Registrar Viaje</ion-button>
   </div>
 </ion-content>

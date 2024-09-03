@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-r-contrasena',
@@ -7,23 +7,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RContrasenaPage implements OnInit {
   
-  icono = "oscuro";
+  icono = "Dark";
 
   constructor() { }
 
   ngOnInit() {
+    this.cambiarTema()
   }
 
+  
 //Funcion para cambiar a modo oscuro:
-cambiarTema(){
-  if (this.icono == "oscuro"){
-    document.documentElement.style.setProperty("--fondo1", "#121212")
-    document.documentElement.style.setProperty("--log", "#4A4A4A")
-    this.icono = "claro"
-  }else{
-    document.documentElement.style.setProperty("--fondo1", "#5dbad9")  
-    document.documentElement.style.setProperty("--log", "#D97C5D")
-    this.icono = "oscuro"
+cambiarTema() {
+  if (this.icono == "Dark") {
+    document.documentElement.style.setProperty("--fondo1", "#000000")
+    document.documentElement.style.setProperty("--log", "#ffffff")
+    var a = document.querySelectorAll('#inputV');
+    console.log(a)
+    a.forEach(inp => {
+      inp?.setAttribute('aria-label', 'Dark input');
+      inp?.setAttribute('color', 'light');
+    });
+    this.icono = "Light"
+  } else {
+    document.documentElement.style.setProperty("--fondo1", "#ffffff")
+    document.documentElement.style.setProperty("--log", "#000000")
+    var a = document.querySelectorAll('#inputV');
+    console.log(a)
+    a.forEach(inp => {
+      inp?.setAttribute('aria-label', 'Dark input');
+      inp?.setAttribute('color', 'dark');
+    });
+    this.icono = "Dark"
   }
 }
+
 }

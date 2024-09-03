@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AnimationController } from '@ionic/angular';
 import { Router } from '@angular/router';
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit,AfterViewInit {
 
 //Animacion del logo de la app
   ngOnInit() {
@@ -31,11 +31,14 @@ export class LoginPage implements OnInit {
 
   usuario = "";
   clave = "";
-  icono = "oscuro";
+  icono = "Light";
 
   constructor(private anim: AnimationController, private router: Router) { }
   navegar(page: string) {
     this.router.navigate([page]);
+  }
+  ngAfterViewInit() {
+    this.cambiarTema()
   }
 //Inicio de sesion
   login() {
@@ -63,16 +66,27 @@ export class LoginPage implements OnInit {
   }
 
   //Funcion para cambiar a modo oscuro:
-  cambiarTema(){
-    if (this.icono == "oscuro"){
-      document.documentElement.style.setProperty("--fondo1", "#121212")
-      document.documentElement.style.setProperty("--log", "#4A4A4A")
-      this.icono = "claro"
-    }else{
-      document.documentElement.style.setProperty("--fondo1", "#5dbad9")
-      document.documentElement.style.setProperty("--log", "#D97C5D")
-      
-      this.icono = "oscuro"
+  cambiarTema() {
+    if (this.icono == "Dark") {
+      document.documentElement.style.setProperty("--fondo1", "#000000")
+      document.documentElement.style.setProperty("--log", "#ffffff")
+      var a = document.querySelectorAll('#inputV');
+      console.log(a)
+      a.forEach(inp => {
+        inp?.setAttribute('aria-label', 'Dark input');
+        inp?.setAttribute('color', 'light');
+      });
+      this.icono = "Light"
+    } else {
+      document.documentElement.style.setProperty("--fondo1", "#ffffff")
+      document.documentElement.style.setProperty("--log", "#000000")
+      var a = document.querySelectorAll('#inputV');
+      console.log(a)
+      a.forEach(inp => {
+        inp?.setAttribute('aria-label', 'Dark input');
+        inp?.setAttribute('color', 'dark');
+      });
+      this.icono = "Dark"
     }
   }
 

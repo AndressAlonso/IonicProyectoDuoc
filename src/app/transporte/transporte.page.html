@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <div id="contenedor">
-    <h3>Transporte Disponibles</h3>
+    <div id="title"><h3>Elige Transporte</h3></div>
     <ion-card>
       <ion-card-header>
         <ion-card-title>Bollenar</ion-card-title>
@@ -9,6 +9,7 @@
       <ion-card-content>
         <span><strong>Hora Salida:</strong> 18:45</span>
         <span><strong>Valor Pasaje:</strong> $1.300</span>
+        <ion-button (click)="navegar('confirmacion-viaje')" color="dark">Unirse</ion-button>
       </ion-card-content>
     </ion-card>
     <ion-card>
@@ -19,6 +20,7 @@
       <ion-card-content>
         <span><strong>Hora Salida:</strong> 18:45</span>
         <span><strong>Valor Pasaje:</strong> $1.300</span>
+        <ion-button (click)="navegar('confirmacion-viaje')" color="dark">Unirse</ion-button>
       </ion-card-content>
     </ion-card>
     <ion-card>
@@ -29,8 +31,8 @@
       <ion-card-content>
         <span><strong>Hora Salida:</strong> 18:45</span>
         <span><strong>Valor Pasaje:</strong> $1.300</span>
+        <ion-button (click)="navegar('confirmacion-viaje')" color="dark">Unirse</ion-button>
       </ion-card-content>
     </ion-card>
   </div>
-  <ion-button (click)="navegar('confirmacion-viaje')" color="dark">Elegir transporte o viaje</ion-button>
 </ion-content>

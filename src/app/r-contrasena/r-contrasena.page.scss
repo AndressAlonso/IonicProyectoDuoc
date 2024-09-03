@@ -1,9 +1,13 @@
+*{
+    color: var(--log);
+}
 #fondo{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     background-color: var(--fondo1);
     
 }
@@ -21,8 +25,9 @@
     text-align: center;
     width: 80%;
     max-width: 320px;
-    background-color: var(--log);
+    background-color: var(--fondo1);
 }
+
 input {
     width: 100%;
     padding: 10px;
@@ -30,7 +35,8 @@ input {
     border: 1px solid #ccc;
     border-radius: 10px;
     font-family: 'REM', sans-serif;
+    background-color: var(--fondo1);
 }
 input::placeholder{
-    color: var(--placeholder);
+    color:var(--log);
 }
