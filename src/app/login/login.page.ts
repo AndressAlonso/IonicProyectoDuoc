@@ -70,6 +70,7 @@ export class LoginPage implements OnInit,AfterViewInit {
     if (this.icono == "Dark") {
       document.documentElement.style.setProperty("--fondo1", "#000000")
       document.documentElement.style.setProperty("--log", "#ffffff")
+      document.documentElement.style.setProperty("--border", "#ccc")
       var a = document.querySelectorAll('#inputV');
       console.log(a)
       a.forEach(inp => {
@@ -78,8 +79,9 @@ export class LoginPage implements OnInit,AfterViewInit {
       });
       this.icono = "Light"
     } else {
-      document.documentElement.style.setProperty("--fondo1", "#ffffff")
+      document.documentElement.style.setProperty("--fondo1", "#cdcccc")
       document.documentElement.style.setProperty("--log", "#000000")
+      document.documentElement.style.setProperty("--border", "#000000")
       var a = document.querySelectorAll('#inputV');
       console.log(a)
       a.forEach(inp => {

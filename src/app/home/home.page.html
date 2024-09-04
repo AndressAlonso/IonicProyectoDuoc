@@ -2,8 +2,27 @@
   <!--Icono para cambiar a modo oscuro-->
 <ion-icon src="assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
 <div id="fondo">
-      <ion-button (click)="navegar('viaje')">Registrar Viaje</ion-button>
-      <ion-button (click)="navegar('transporte')">Buscar Transporte</ion-button>
+<!--carta del viaje-->
+  <ion-card (click)="navegar('viaje')">
+    <ion-card-header >
+      <ion-card-title>Registrar Viaje</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Registra tu viaje para llegar a tiempo a tu destino.
+    </ion-card-content>
+  </ion-card>
+<!--carta del transporte-->
+  <ion-card (click)="navegar('transporte')">
+    <ion-card-header>
+      <ion-card-title>Buscar Transporte</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Busca transporte para llegar rapido y seguro a tu destino.
+    </ion-card-content>
+  </ion-card>
+
 </div>
 
 </ion-content>

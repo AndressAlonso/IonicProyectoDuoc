@@ -32,7 +32,7 @@ export class ViajePage implements OnInit, AfterViewInit {
       });
       this.icono = "Light"
     } else {
-      document.documentElement.style.setProperty("--fondo1", "#ffffff")
+      document.documentElement.style.setProperty("--fondo1", "#cdcccc")
       document.documentElement.style.setProperty("--log", "#000000")
       var a = document.querySelectorAll('#inputV');
       console.log(a)

@@ -16,3 +16,21 @@ color: var(--tema);
 }
 
 
+//visuales para la ion-card
+ion-card{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-radius: 20px;
+}
+ion-card-header{
+  //background-color: var(--title);
+  border-radius: 20px;
+}
+ion-card-content{
+  font-family: 'REM', sans-serif;
+  font-size: medium;
+  
+}
+
+
