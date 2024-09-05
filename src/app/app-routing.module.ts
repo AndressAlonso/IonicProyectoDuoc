@@ -34,7 +34,19 @@ const routes: Routes = [
   {
     path: 'resumen-viaje',
     loadChildren: () => import('./resumen-viaje/resumen-viaje.module').then( m => m.ResumenViajePageModule)
+  },  {
+    path: 'viaje2',
+    loadChildren: () => import('./viaje2/viaje2.module').then( m => m.Viaje2PageModule)
   },
+  {
+    path: 'transporte2',
+    loadChildren: () => import('./transporte2/transporte2.module').then( m => m.Transporte2PageModule)
+  },
+  {
+    path: 'resumen-viaje',
+    loadChildren: () => import('./resumen-viaje/resumen-viaje.module').then( m => m.ResumenViajePageModule)
+  },
+
 ];
 
 @NgModule({
