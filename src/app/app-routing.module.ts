@@ -28,13 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./transporte/transporte.module').then( m => m.TransportePageModule)
   },
   {
-    path: 'confirmacion-viaje',
-    loadChildren: () => import('./confirmacion-viaje/confirmacion-viaje.module').then( m => m.ConfirmacionViajePageModule)
-  },
-  {
-    path: 'resumen-viaje',
-    loadChildren: () => import('./resumen-viaje/resumen-viaje.module').then( m => m.ResumenViajePageModule)
-  },  {
     path: 'viaje2',
     loadChildren: () => import('./viaje2/viaje2.module').then( m => m.Viaje2PageModule)
   },
