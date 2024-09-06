@@ -3,17 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color: var(--fondo1);
 }
 
-#tema{
-position: absolute;
-right: 20px;
-top: 20px;
-font-size: 2.5rem;
-color: var(--tema);
-}
 
 
 //visuales para la ion-card
@@ -22,13 +15,18 @@ ion-card{
   gap: 20px;
   flex-wrap: wrap;
   border-radius: 20px;
+ 
 }
 ion-card-header{
-  //background-color: var(--title);
+  color: var(--fondo1) !important;
   border-radius: 20px;
+}
+ion-card-title{
+  color: white !important;
 }
 ion-card-content{
   font-family: 'REM', sans-serif;
+  color: white !important;
   font-size: medium;
   
 }

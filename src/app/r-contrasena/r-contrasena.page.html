@@ -1,17 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Recuperacion de Contraseña</ion-title>
-    <!--Icono para cambiar a modo oscuro-->
-    <ion-icon src="assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
+    <ion-title>
+      Inicio
+    </ion-title>
+    <div id="header">
+      <img src="assets/logouber.png" alt="" id="logo">
+    <ion-icon src="assets/{{funciones.icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
+  </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div id="fondo">
+    <h2>Recupera tu contraseña</h2>
     <div id="rContraseña">
-      <h2>Ingrese contraseña nueva</h2>
-      <input type="text" placeholder="Usuario" >
-      <input type="password" placeholder="Contraseña nueva" >
+      <label for="">
+        Usuario
+        <input type="text" id="usuario" placeholder="Usuario">
+      </label>
+      <label for="nuevaContraseña">
+      Contraseña
+        <input type="password" id="nuevaContraseña" placeholder="Contraseña nueva">
+      </label>
       <ion-button href="#">Recuperar contraseña</ion-button>
     </div>
   </div>

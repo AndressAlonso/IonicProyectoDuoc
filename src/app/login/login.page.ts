@@ -1,13 +1,15 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AnimationController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FuncionesCompartidasService } from '../services/funciones-compartidas.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit,AfterViewInit {
-
+  usuario = "";
+  clave = "";
 //Animacion del logo de la app
   ngOnInit() {
     this.anim.create()
@@ -26,19 +28,18 @@ export class LoginPage implements OnInit,AfterViewInit {
     .direction("alternate")
     .fromTo("transform", "rotate(-15deg)", "rotate(15deg)")
     .play()
+
+
 }
 
 
-  usuario = "";
-  clave = "";
-  icono = "Light";
 
-  constructor(private anim: AnimationController, private router: Router) { }
+
+  constructor(private anim: AnimationController, private router: Router, public funciones: FuncionesCompartidasService) { }
   navegar(page: string) {
     this.router.navigate([page]);
   }
   ngAfterViewInit() {
-    this.cambiarTema()
   }
 //Inicio de sesion
   login() {
@@ -66,31 +67,11 @@ export class LoginPage implements OnInit,AfterViewInit {
   }
 
   //Funcion para cambiar a modo oscuro:
-  cambiarTema() {
-    if (this.icono == "Dark") {
-      document.documentElement.style.setProperty("--fondo1", "#000000")
-      document.documentElement.style.setProperty("--log", "#ffffff")
-      document.documentElement.style.setProperty("--border", "#ccc")
-      var a = document.querySelectorAll('#inputV');
-      console.log(a)
-      a.forEach(inp => {
-        inp?.setAttribute('aria-label', 'Dark input');
-        inp?.setAttribute('color', 'light');
-      });
-      this.icono = "Light"
-    } else {
-      document.documentElement.style.setProperty("--fondo1", "#cdcccc")
-      document.documentElement.style.setProperty("--log", "#000000")
-      document.documentElement.style.setProperty("--border", "#000000")
-      var a = document.querySelectorAll('#inputV');
-      console.log(a)
-      a.forEach(inp => {
-        inp?.setAttribute('aria-label', 'Dark input');
-        inp?.setAttribute('color', 'dark');
-      });
-      this.icono = "Dark"
-    }
-  }
+ cambiarTema(){
+  this.funciones.cambiarTema();
+ }
+ obtenerIcono(){ 
+   return this.funciones.getIcono(); }    
 
 
 }

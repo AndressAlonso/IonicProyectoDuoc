@@ -1,6 +1,4 @@
-*{
-    color: var(--log);
-}
+
 #fondo{
     display: flex;
     flex-direction: column;
@@ -24,7 +22,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 80%;
-    max-width: 320px;
     background-color: var(--fondo1);
 }
 
@@ -39,4 +36,9 @@ input {
 }
 input::placeholder{
     color:var(--log);
+}
+
+#logo{
+    max-width: 60px;
+    max-height: 60px;
 }
