@@ -8,28 +8,32 @@ export class FuncionesCompartidasService {
   constructor() { }
 
   cambiarTema() {
-    if (this.icono == "Dark") {
-      document.documentElement.style.setProperty("--fondo1", "#000000")
+    if (this.icono == "Light") {
+      document.documentElement.style.setProperty("--fondo1", "#1F1F1F")
       document.documentElement.style.setProperty("--log", "#ffffff")
       document.documentElement.style.setProperty("--border", "#ccc")
       var a = document.querySelectorAll('#inputV');
+      var b = document.querySelector('#boton');
+      b?.setAttribute('color', 'light');
       console.log(a)
       a.forEach(inp => {
         inp?.setAttribute('aria-label', 'Dark input');
         inp?.setAttribute('color', 'light');
       });
-      this.icono = "Light"
-    } else if (this.icono == "Light") {
-      document.documentElement.style.setProperty("--fondo1", "#cdcccc")
-      document.documentElement.style.setProperty("--log", "#000000")
-      document.documentElement.style.setProperty("--border", "#000000")
+      this.icono = "Dark"
+    } else if (this.icono == "Dark") {
+      document.documentElement.style.setProperty("--fondo1", "#ECECEC")
+      document.documentElement.style.setProperty("--log", "#1F1F1F")
+      document.documentElement.style.setProperty("--border", "#1F1F1F")
       var a = document.querySelectorAll('#inputV');
+      var b = document.querySelector('#boton');
+      b?.setAttribute('color', 'dark');
       console.log(a)
       a.forEach(inp => {
         inp?.setAttribute('aria-label', 'Dark input');
         inp?.setAttribute('color', 'dark');
       });
-      this.icono = "Dark"
+      this.icono = "Light"
     }
   
    

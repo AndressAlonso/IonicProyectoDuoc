@@ -1,8 +1,11 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+// fondo es para el fondo de la pantalla
+// log es color de la letra
+// border es para el color de los bordes
 :root{
-    --fondo1: #cdcccc;
+    --fondo1: #1F1F1F;
     --placeholder: #ffffff;
-    --border: #ccc;
-    --log: #000000;
+    --border: #ffffff;
+    --log: #ffffff;
 }

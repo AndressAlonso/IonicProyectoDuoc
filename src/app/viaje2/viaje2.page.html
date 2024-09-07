@@ -1,6 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Viaje2</ion-title>
+    <div id="header">
+      <ion-icon src="assets/svgUber.svg" alt="" id="logo"></ion-icon>
+      <ion-title class="ion-text-center">
+        Inicio
+      </ion-title>
+    <ion-icon src="assets/{{funciones.icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
+  </div>
   </ion-toolbar>
 </ion-header>
 

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AnimationController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FuncionesCompartidasService } from '../services/funciones-compartidas.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',

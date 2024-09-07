@@ -2,9 +2,24 @@ ion-card{
     ion-card-content{
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: 5px;
     }
 }
+
+#contenedor{
+    padding: 5px 0px; 
+    width: 100%;
+    height: 150%;
+    background-color: var(--fondo1);
+}
+
+ion-card{
+    background-color: var(--fondo1);
+    border-radius: 10px;
+    margin: 10px;
+}
+
 #title{
     display: flex;
     width: 100%;

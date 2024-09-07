@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FuncionesCompartidasService } from '../services/funciones-compartidas.service';
 
 @Component({
   selector: 'app-viaje2',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Viaje2Page implements OnInit {
 
-  constructor() { }
+  constructor(public funciones: FuncionesCompartidasService) { }
 
   ngOnInit() {
   }
-
+  cambiarTema() {
+    this.funciones.cambiarTema();
+  }
+  obtenerIcono() {
+    return this.funciones.getIcono();
+  }
 }
