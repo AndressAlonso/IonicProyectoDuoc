@@ -5,11 +5,77 @@
       <ion-title class="ion-text-center">
         Transporte
       </ion-title>
-    <ion-icon src="assets/{{funciones.icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
-  </div>
+      <ion-icon src="assets/{{funciones.icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
- 
+  <div id="contenedor">
+    <h3>Viaje de Andress</h3>
+    <span>En espera</span>
+    <div id="viaje-img">
+      <div id="descripcion">
+
+        <div id="fechaHora">
+          <span>Hora salida: {{hora}} </span>
+          <span>{{fecha}} </span>
+        </div>
+      </div>
+      <img src="assets\Ubicacion.jpg" alt="">
+      <span>Destino de Andres</span>
+    </div>
+
+    <div id="viaje-img">
+      <div id="descripcion">
+        <div id="fechaHora">
+          <span>Hora salida: {{hora}} </span>
+          <span>{{fecha}} </span>
+        </div>
+      </div>
+      <div id="mapa">
+        <div #map id="map"></div>
+      </div>
+      <span>Tu ubicacion</span>
+    </div>
+
+    <div id="tiempoEstimado">
+      <div>
+        <ion-icon src="assets/location.svg" alt=""></ion-icon>
+        <p>Serrano 1105, Melipilla, Región Metropolitana</p>
+      </div>
+      <div><ion-icon src="assets/time.svg" alt=""></ion-icon>
+        <p>55 minutos, Trafico fluido</p>
+      </div>
+      <div><ion-icon src="assets/finish_flag.svg" alt=""></ion-icon>
+        <p>Manantiales, Región Metropolitana de Santiago, Chile</p>
+      </div>
+
+    </div>
+    <h2>Detalles</h2>
+    <div id="detalles">
+      <div> <ion-icon src="assets/passenger.svg" alt=""></ion-icon>
+        <p>Cantidad de pasajero(s): 1/4</p>
+      </div>
+      <div> <ion-icon src="assets/money.svg" alt=""></ion-icon>
+        <p>Costo de viaje: $1300 por persona</p>
+      </div>
+      <div>
+        <ion-icon src="assets/travel.svg" alt=""></ion-icon>
+        <p>Tipo de Vehiculo: Auto</p>
+      </div>
+      <div>
+        <ion-icon src="assets/location.svg" alt=""></ion-icon>
+       <div id="descMonto"> 
+        <span>Punto de encuentro</span>
+        <span>--Estacionamiento Duoc--</span></div>
+      </div>
+    </div>
+    <div id="detalles-loc">
+      <h2>Monto A Pagar</h2>
+      <p> $1300 pesos</p>
+    </div>
+    <ion-button (click)="navegar('resumen-viaje')" color="dark">terminar pago</ion-button>
+  </div>
+
 </ion-content>

@@ -3,17 +3,83 @@
     <div id="header">
       <ion-icon src="assets/svgUber.svg" alt="" id="logo"></ion-icon>
       <ion-title class="ion-text-center">
-        Inicio
+        Viaje
       </ion-title>
-    <ion-icon src="assets/{{funciones.icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
-  </div>
+      <ion-icon src="assets/{{funciones.icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Viaje2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div id="contenedor">
+    <h3>Tu Viaje</h3>
+    <span>En espera</span>
+    <div id="viaje-img">
+      <div id="descripcion">
+
+        <div id="fechaHora">
+          <span>Hora salida: {{hora}} </span>
+          <span>{{fecha}} </span>
+        </div>
+      </div>
+      <img src="assets\Ubicacion.jpg" alt="">
+      <span>Tu destino</span>
+    </div>
+
+    <div id="viaje-img">
+      <div id="descripcion">
+        <div id="fechaHora">
+          <span>Hora salida: {{hora}} </span>
+          <span>{{fecha}} </span>
+        </div>
+      </div>
+      <div id="mapa">
+        <div #map id="map"></div>
+      </div>
+      <span>Tu ubicacion</span>
+    </div>
+
+    <div id="tiempoEstimado">
+      <div>
+        <ion-icon src="assets/location.svg" alt=""></ion-icon>
+        <p>Serrano 1105, Melipilla, Región Metropolitana</p>
+      </div>
+      <div><ion-icon src="assets/time.svg" alt=""></ion-icon>
+        <p>55 minutos, Trafico fluido</p>
+      </div>
+      <div><ion-icon src="assets/finish_flag.svg" alt=""></ion-icon>
+        <p>Manantiales, Región Metropolitana de Santiago, Chile</p>
+      </div>
+    </div>
+    <h2>Detalles</h2>
+    <div id="detalles">
+      <div> <ion-icon src="assets/passenger.svg" alt=""></ion-icon>
+        <p>Cantidad de pasajero(s): 2/4</p>
+      </div>
+      <div> <ion-icon src="assets/money.svg" alt=""></ion-icon>
+        <p>Costo de viaje: $1300 por persona</p>
+      </div>
+      <div>
+        <ion-icon src="assets/travel.svg" alt=""></ion-icon>
+        <p>Tipo de Vehiculo: Auto</p>
+      </div>
+      <div>
+        <ion-icon src="assets/location.svg" alt=""></ion-icon>
+       <div id="descMonto"> 
+        <span>Punto de encuentro</span>
+        <span>--Estacionamiento Duoc--</span></div>
+      </div>
+    </div>
+    <div id="detalles-loc">
+      <h2>Monto a Recolectar</h2>
+      <p>$1300 pesos x Persona</p>
+      <p>Monto Total: $2600</p>
+    </div>
+  <div id="botonera">
+    <ion-button (click)="navegar('resumen-viaje')" color="tertiary">Comenzar Viaje</ion-button>
+    <ion-button (click)="navegar('resumen-viaje')" color="danger">Terminar Viaje</ion-button>
+    <ion-button (click)="navegar('resumen-viaje')" color="dark">Ver Pasajeros</ion-button>
+  </div>
+  </div>
+
 </ion-content>

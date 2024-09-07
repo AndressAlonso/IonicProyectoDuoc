@@ -71,7 +71,7 @@ ion-content{
 }
   
 
-  ion-content *{
+  ion-content *:not(.gm-style-iw-d){
     text-decoration: none;
     color: var(--log) !important;
   }
