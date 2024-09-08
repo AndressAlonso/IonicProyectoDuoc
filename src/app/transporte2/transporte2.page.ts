@@ -12,6 +12,7 @@ export class Transporte2Page implements OnInit {
   @ViewChild('map', { static: false }) mapElement!: ElementRef;
   map!: any;
   infoWindow!: any;
+  selectedSegment: string = 'default';
   mapStyles = [
     {
       featureType: 'all',
@@ -59,7 +60,18 @@ export class Transporte2Page implements OnInit {
 
   }
   ngOnInit() {}
-
+  
+  onSegmentChange(event: any) {
+    this.selectedSegment = event.detail.value;
+    
+    if (this.selectedSegment === 'default') {
+      // Realizar acción para "Transferencia"
+      console.log("Transferencia seleccionada");
+    } else if (this.selectedSegment === 'segment') {
+      // Realizar acción para "Efectivo"
+      console.log("Efectivo seleccionado");
+    }
+  }
 
   loadMap() {
     const mapOptions = {

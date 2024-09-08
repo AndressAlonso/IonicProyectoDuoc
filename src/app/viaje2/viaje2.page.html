@@ -75,10 +75,56 @@
       <p>$1300 pesos x Persona</p>
       <p>Monto Total: $2600</p>
     </div>
+    <ion-modal #modal trigger="open-modal">
+      <ng-template>
+        <ion-content>
+          <ion-toolbar>
+            <ion-title>Modal</ion-title>
+            <ion-buttons slot="end">
+              <ion-button color="light" (click)="modal.dismiss()">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+          <ion-list>
+            <ion-item>
+              <ion-avatar slot="start">
+                <ion-img name="user" ></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <h2>Benjamin</h2>
+                <p>Paga en efectivo</p>
+                <p>Baja en Maria Pinto</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-avatar slot="start">
+                <ion-img src=""></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <h2>Andres</h2>
+                <p>Paga en efectivo</p>
+                <p>Baja en Bollenar</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-avatar slot="start">
+                <ion-img src=""></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <h2>Felipe</h2>
+                <p>Paga en transferencia</p>
+                <p>Baja en Bollenar</p>
+              </ion-label>
+            </ion-item>
+            
+          </ion-list>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   <div id="botonera">
     <ion-button (click)="navegar('resumen-viaje')" color="tertiary">Comenzar Viaje</ion-button>
     <ion-button (click)="navegar('resumen-viaje')" color="danger">Terminar Viaje</ion-button>
-    <ion-button (click)="navegar('resumen-viaje')" color="dark">Ver Pasajeros</ion-button>
+    <ion-button id="open-modal" expand="block">Ver Pasajeros</ion-button>
+
   </div>
   </div>
 

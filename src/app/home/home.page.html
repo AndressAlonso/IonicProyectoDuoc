@@ -12,8 +12,8 @@
 
 <ion-content [fullscreen]="true">
 <div id="fondo">
-<!--carta del viaje-->
-  <ion-card (click)="navegar('viaje')"> 
+
+  <ion-card (click)="navegar('viaje')" id="cardh"> 
     <ion-card-header>
       <ion-card-title>Registrar Viaje</ion-card-title>
     </ion-card-header>
@@ -22,12 +22,11 @@
       Registra tu viaje para llegar a tiempo a tu destino.
     </ion-card-content>
   </ion-card>
-<!--carta del transporte-->
-  <ion-card (click)="navegar('transporte')">
+
+  <ion-card (click)="navegar('transporte')" id="cardh">
     <ion-card-header>
       <ion-card-title>Buscar Transporte</ion-card-title>
     </ion-card-header>
-  
     <ion-card-content>
       Busca transporte para llegar rapido y seguro a tu destino.
     </ion-card-content>

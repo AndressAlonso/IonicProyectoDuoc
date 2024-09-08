@@ -16,6 +16,10 @@ export class FuncionesCompartidasService {
       var b = document.querySelector('#boton');
       b?.setAttribute('color', 'light');
       console.log(a)
+      var cards = document.querySelectorAll('#card');
+      cards.forEach(card => {
+        card?.setAttribute('color', 'light');
+      });
       a.forEach(inp => {
         inp?.setAttribute('aria-label', 'Dark input');
         inp?.setAttribute('color', 'light');
@@ -28,6 +32,10 @@ export class FuncionesCompartidasService {
       var a = document.querySelectorAll('#inputV');
       var b = document.querySelector('#boton');
       b?.setAttribute('color', 'dark');
+      var cards = document.querySelectorAll('#card');
+      cards.forEach(card => {
+        card?.setAttribute('color', 'dark');
+      });
       console.log(a)
       a.forEach(inp => {
         inp?.setAttribute('aria-label', 'Dark input');

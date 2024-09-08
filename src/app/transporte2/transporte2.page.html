@@ -75,7 +75,27 @@
       <h2>Monto A Pagar</h2>
       <p> $1300 pesos</p>
     </div>
-    <ion-button (click)="navegar('resumen-viaje')" color="dark">terminar pago</ion-button>
+    <ion-segment value="default" (ionChange)="onSegmentChange($event)">
+      <ion-segment-button value="default">
+        <ion-label>Transferencia</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="segment">
+        <ion-label>Efectivo</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    
+    <div *ngIf="selectedSegment === 'default'">
+      <p>Subir Imagen Transferencia</p>
+    </div>
+    <div *ngIf="selectedSegment === 'segment'">
+      <p>Pagar En efectivo</p>
+    </div>
+    <div id="inputDestino">
+      <ion-input id="inputV" type="DestinoPasajero" label="" labelPlacement="floating"
+      helperText="Ingresa tu viaje de destino" errorText="" aria-label="Light input" color="light"></ion-input>
+      <ion-button (click)="navegar('resumen-viaje')" disabled="false" color="dark">Terminar Pago</ion-button>
+    </div>
+   
   </div>
 
 </ion-content>
