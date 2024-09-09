@@ -14,6 +14,8 @@ export class FuncionesCompartidasService {
       document.documentElement.style.setProperty("--border", "#ccc")
       var a = document.querySelectorAll('#inputV');
       var b = document.querySelector('#boton');
+      var btnclose = document.getElementById('closebtn');
+      btnclose?.setAttribute('color', 'light');
       b?.setAttribute('color', 'light');
       console.log(a)
       var cards = document.querySelectorAll('#card');
@@ -33,6 +35,9 @@ export class FuncionesCompartidasService {
       document.documentElement.style.setProperty("--border", "#1F1F1F")
       var a = document.querySelectorAll('#inputV');
       var b = document.querySelector('#boton');
+      var btnclose = document.getElementById('closebtn');
+      console.log(btnclose)
+      btnclose?.setAttribute('color', 'dark');
       b?.setAttribute('color', 'dark');
       var cards = document.querySelectorAll('#card');
       cards.forEach(card => {

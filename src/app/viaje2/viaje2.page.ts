@@ -68,14 +68,19 @@ export class Viaje2Page implements OnInit {
       center: { lat: -34.397, lng: 150.644 },
       zoom: 15,
       disableDefaultUI: true,
-      style : this.mapStyles
+      mapTypeControl: false,    // Desactiva el control de tipo de mapa
+      zoomControl: true,        // Mantiene el control de zoom activo
+      streetViewControl: false, // Desactiva el control de Street View
+      fullscreenControl: false, // Desactiva el control de pantalla completa
+      scaleControl: true,
+      gestureHandling: 'greedy', // Optimizar gestos táctiles
     };
   
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     this.infoWindow = new google.maps.InfoWindow();
   
     const locationButton = document.createElement('button');
-    locationButton.textContent = 'Pan to Current Location';
+    locationButton.textContent = 'Tu Ubicacion Actual';
     locationButton.classList.add('custom-map-control-button');
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   
@@ -92,7 +97,7 @@ export class Viaje2Page implements OnInit {
             };
   
             this.infoWindow.setPosition(pos);
-            this.infoWindow.setContent('Location found.');
+            this.infoWindow.setContent('<div id="locationbtn">Estas Aqui!</div>');
             this.infoWindow.open(this.map);
             this.map.setCenter(pos);
           },
@@ -113,13 +118,12 @@ export class Viaje2Page implements OnInit {
     locationButton.click();
   }
   
-  // Nueva función para aplicar estilos personalizados
   applyCustomButtonStyles(button: HTMLElement) {
-    button.style.backgroundColor = 'var(--fondo1)'; // Usar la variable --fondo1 para el fondo
+    button.style.backgroundColor = 'var(--fondo1)'; 
     button.style.color = 'var(--log)';
-    button.style.border = 'none'; // Opcional: elimina el borde si es necesario
-    button.style.padding = '10px'; // Ajustar el padding para mejorar la presentación
-    button.style.borderRadius = '5px'; // Redondear bordes del botón
+    button.style.border = 'none';
+    button.style.padding = '10px'; 
+    button.style.borderRadius = '5px';
   }
   
   

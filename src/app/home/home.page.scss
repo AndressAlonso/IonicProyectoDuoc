@@ -1,4 +1,4 @@
-#fondo{
+#fondo {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -8,7 +8,7 @@
   background-color: var(--fondo1);
 }
 
-ion-card{
+ion-card {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -17,15 +17,36 @@ ion-card{
   background-color: var(--fondo1);
   flex-direction: column;
 }
-ion-card-header{
+
+ion-card-header {
   color: var(--fondo1) !important;
   border-radius: 20px;
 }
 
-ion-card-content{
+ion-card-content {
   font-family: 'REM', sans-serif;
   font-size: medium;
-  
+
 }
 
+#cerrarcuenta {
+  width: 30%; 
+ background-color: var(--fondo1);
+margin: 6px;
+  ion-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    ion-icon {
+      width: 100%;
+      color: var(--log);
+      font-size: 2rem;
+      font-weight: bolder;
+    }
+    span{
+      width: 100%;
+    }
 
+  }
+}

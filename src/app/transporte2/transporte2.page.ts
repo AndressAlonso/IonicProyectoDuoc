@@ -76,15 +76,21 @@ export class Transporte2Page implements OnInit {
   loadMap() {
     const mapOptions = {
       center: { lat: -34.397, lng: 150.644 },
-      zoom: 15 ,
-      disableDefaultUI: true
+      zoom: 15,
+      disableDefaultUI: true,
+      mapTypeControl: false,    // Desactiva el control de tipo de mapa
+      zoomControl: true,        // Mantiene el control de zoom activo
+      streetViewControl: false, // Desactiva el control de Street View
+      fullscreenControl: false, // Desactiva el control de pantalla completa
+      scaleControl: true,
+      gestureHandling: 'greedy',
     };
   
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     this.infoWindow = new google.maps.InfoWindow();
   
     const locationButton = document.createElement('button');
-    locationButton.textContent = 'Tu Ubicacion.';
+    locationButton.textContent = 'Tu Ubicacion Actual';
     locationButton.classList.add('custom-map-control-button');
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   
@@ -101,7 +107,7 @@ export class Transporte2Page implements OnInit {
             };
   
             this.infoWindow.setPosition(pos);
-            this.infoWindow.setContent('Estas Aqui!.');
+            this.infoWindow.setContent('<div id="locationbtn">Estas Aqui!</div>');
             this.infoWindow.open(this.map);
             this.map.setCenter(pos);
           },

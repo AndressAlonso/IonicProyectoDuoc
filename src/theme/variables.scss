@@ -9,3 +9,8 @@
     --border: #ffffff;
     --log: #ffffff;
 }
+@media (prefers-color-scheme: dark) {
+    :root.md{
+        --ion-background-color: variable-exists($name: --fondo1) ? var(--fondo1) : #1F1F1F;
+    }
+}

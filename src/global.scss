@@ -39,48 +39,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
-    font-family: "Poppins", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Poppins", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
-ion-content{
+
+ion-content {
   background-color: var(--fondo1) !important;
 }
-#header{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    img{
-      width:20%;
-    }
-    ion-title{
-      width: 30%;
-    }
-    ion-icon{
-      width: 20%;
-    }
+
+#header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+
+  img {
+    width: 20%;
   }
 
-  #tema{
-      font-size: 2rem;
-      color: var(--tema);
+  ion-title {
+    width: 30%;
   }
-  #logo{
-    font-size: 2rem;
-    color: var(--tema);
+
+  ion-icon {
+    width: 20%;
+  }
 }
+
+#tema {
+  font-size: 2rem;
+  color: var(--tema);
+}
+
+#logo {
+  font-size: 2rem;
+  color: var(--tema);
+}
+
+.gm-style-iw-chr {
+  display: none;
+}
+#locationbtn {
+  color: black!important;
+  font-size: medium;
+  width: 100%;
+  font-weight: bold;
+  height: 100%;
+  text-align: center;
+  padding: 5px 0px;
+}
+
+ion-content *::not(#locationbtn) {
+  text-decoration: none;
+  color: var(--log) !important;
+
+
   
-  ion-content *:not(.gm-style-iw-d){
-    text-decoration: none;
-    color: var(--log) !important;
+  
+
+  gm-style-iw {
+    width: 100%;
   }
 
-  *{
-    transition: all 0.6s ease-in-out;
-    color: var(--log);
+  .gm-style-iw-d {
+    width: 100%;
   }
 
-  ion-toolbar {
-    --background: var(--fondo1);
-    --ion-color-base: var(--log) !important;
- }
+}
+
+
+* {
+  transition: all 0.6s ease-in-out;
+  color: var(--log);
+ 
+}
+
+ion-toolbar {
+  --background: var(--fondo1);
+  --ion-color-base: var(--log) !important;
+}
