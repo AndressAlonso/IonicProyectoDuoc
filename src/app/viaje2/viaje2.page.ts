@@ -1,6 +1,7 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FuncionesCompartidasService } from '../services/funciones-compartidas.service';
 import { Router } from '@angular/router';
+import { style } from '@angular/animations';
 declare var google: any;
 
 
@@ -65,8 +66,9 @@ export class Viaje2Page implements OnInit {
   loadMap() {
     const mapOptions = {
       center: { lat: -34.397, lng: 150.644 },
-      zoom: 15 ,
-      disableDefaultUI: true
+      zoom: 15,
+      disableDefaultUI: true,
+      style : this.mapStyles
     };
   
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);

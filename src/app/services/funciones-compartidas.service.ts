@@ -20,6 +20,8 @@ export class FuncionesCompartidasService {
       cards.forEach(card => {
         card?.setAttribute('color', 'light');
       });
+      var header = document.querySelectorAll('ion-header');
+      
       a.forEach(inp => {
         inp?.setAttribute('aria-label', 'Dark input');
         inp?.setAttribute('color', 'light');

@@ -54,3 +54,15 @@ ion-icon{
     align-items: center;
     flex-wrap: wrap;
 }
+#Transferencias{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--fondo1);
+    color: var(--log);
+    text-align: center;
+}
+#transferencia{
+    width: 95%;
+}

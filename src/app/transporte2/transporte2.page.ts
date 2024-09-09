@@ -84,7 +84,7 @@ export class Transporte2Page implements OnInit {
     this.infoWindow = new google.maps.InfoWindow();
   
     const locationButton = document.createElement('button');
-    locationButton.textContent = 'Pan to Current Location';
+    locationButton.textContent = 'Tu Ubicacion.';
     locationButton.classList.add('custom-map-control-button');
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   
@@ -101,7 +101,7 @@ export class Transporte2Page implements OnInit {
             };
   
             this.infoWindow.setPosition(pos);
-            this.infoWindow.setContent('Location found.');
+            this.infoWindow.setContent('Estas Aqui!.');
             this.infoWindow.open(this.map);
             this.map.setCenter(pos);
           },
