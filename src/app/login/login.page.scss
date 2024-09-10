@@ -50,7 +50,7 @@
   }
   
   #enlaces a {
-    color: white;
+    color: var(--log);
     text-decoration: none;
     font-family: 'Dancing Script', cursive;
     font-family: 'REM', sans-serif;
@@ -77,12 +77,13 @@
     color: var(--boton);
     top: 5rem;
 }
+
 #tema{
   position: absolute;
   right: 20px;
   top: 20px;
   font-size: 3rem;
-  color: var(--tema);
+  color: var(--log);
 }
 
 

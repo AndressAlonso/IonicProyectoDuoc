@@ -8,9 +8,14 @@
     --placeholder: #ffffff;
     --border: #ffffff;
     --log: #ffffff;
+    --ion-background-color: variable-exists($name: --fondo1) ? var(--fondo1) : #1F1F1F;
+    
 }
 @media (prefers-color-scheme: dark) {
     :root.md{
         --ion-background-color: variable-exists($name: --fondo1) ? var(--fondo1) : #1F1F1F;
     }
+}
+:host{
+    --background: variable-exists($name: --fondo1) ? var(--fondo1) : #1F1F1F;
 }
