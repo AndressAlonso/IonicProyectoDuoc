@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FuncionesCompartidasService {
-  public icono = 'Dark'; 
-  constructor() { }
+  public icono = 'Dark';
+  constructor(private toast: ToastController) { }
 
   cambiarTema() {
     if (this.icono == "Light") {
@@ -23,7 +24,7 @@ export class FuncionesCompartidasService {
         card?.setAttribute('color', 'light');
       });
       var header = document.querySelectorAll('ion-header');
-      
+
       a.forEach(inp => {
         inp?.setAttribute('aria-label', 'Dark input');
         inp?.setAttribute('color', 'light');
@@ -50,10 +51,22 @@ export class FuncionesCompartidasService {
       });
       this.icono = "Light"
     }
-  
-   
+
+
   }
+
+
   getIcono() {
     return this.icono;
+  }
+
+  async showToast(texto: string) {
+    const toast = await this.toast.create({
+      message: texto,
+      duration: 1500,
+      positionAnchor: 'footer',
+      cssClass: 'rounded-toast'
+    });
+    await toast.present();
   }
 }

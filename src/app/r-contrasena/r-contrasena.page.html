@@ -12,17 +12,17 @@
 
 <ion-content [fullscreen]="true">
   <div id="fondo">
-    <h2>Recupera tu contraseña</h2>
     <div id="rContraseña">
+      <h2>Registro</h2>
       <label for="">
         Usuario
-        <input type="text" id="usuario" placeholder="Usuario">
+        <input type="text" id="usuario" [(ngModel)]="User" placeholder="Usuario">
       </label>
       <label for="nuevaContraseña">
       Contraseña
-        <input type="password" id="nuevaContraseña" placeholder="Contraseña nueva">
+        <input type="password" id="nuevaContraseña" [(ngModel)]="clave" placeholder="Contraseña nueva">
       </label>
-      <ion-button href="#">Recuperar contraseña</ion-button>
+      <ion-button (click)="CrearUsuario(User,clave)">Registro</ion-button>
     </div>
   </div>
 </ion-content>

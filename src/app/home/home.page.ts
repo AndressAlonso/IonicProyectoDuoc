@@ -33,6 +33,5 @@ export class HomePage {
     return this.funciones.getIcono();
   }
 
-  
-
+    
 }

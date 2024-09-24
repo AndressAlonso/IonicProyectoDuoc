@@ -10,6 +10,7 @@ import { FuncionesCompartidasService } from '../services/funciones-compartidas.s
 export class LoginPage implements OnInit,AfterViewInit {
   usuario = "";
   clave = "";
+ usuarios: any[] = []
 //Animacion del logo de la app
   ngOnInit() {
     this.anim.create()
@@ -20,7 +21,7 @@ export class LoginPage implements OnInit,AfterViewInit {
     .fromTo("transform", "rotate(-5deg)", "rotate(5deg)")
     .play()
 
-//Animacion del logo modo oscuro
+
     this.anim.create()
     .addElement(document.querySelector("#tema")!)
     .duration(2000)
@@ -28,29 +29,36 @@ export class LoginPage implements OnInit,AfterViewInit {
     .direction("alternate")
     .fromTo("transform", "rotate(-15deg)", "rotate(15deg)")
     .play()
-
-
 }
 
-
-
-
-  constructor(private anim: AnimationController, private router: Router, public funciones: FuncionesCompartidasService) { }
+  constructor(private anim: AnimationController, private router: Router, public funciones: FuncionesCompartidasService) { 
+   
+  }
+  ionViewDidEnter() {
+    if (localStorage.getItem("usuarios")) {
+      this.usuarios = JSON.parse(localStorage.getItem("usuarios")!)
+    }
+  }
   navegar(page: string) {
     this.router.navigate([page]);
   }
   ngAfterViewInit() {
   }
+  showToast(texto:string){
+    this.funciones.showToast(texto);
+  }
 //Inicio de sesion
   login() {
-    
-    if (this.usuario == 'admin' && this.clave == 'admin') { // Utiliza comparaciones (=== o ==)
-      console.log("Ingresaste correctamente");
-      this.router.navigate(['/home']); // Redirige a la página 'home'
-    } else {
-      this.animaInput("#clave");
-      //this.animaInput("#usuario");
-    }
+    this.usuarios.forEach(user => {
+      if (user.usuario === this.usuario && user.contraseña === this.clave){
+        this.showToast('Se ha iniciado Sesion Correctamente')
+        this.navegar('home')
+      }else{
+        this.showToast('El usuario no se encuentra registrado')
+        console.log(this.usuarios)
+      }
+      
+    });
   }
   
 //Animacion de la contraseña
@@ -72,6 +80,5 @@ export class LoginPage implements OnInit,AfterViewInit {
  }
  obtenerIcono(){ 
    return this.funciones.getIcono(); }    
-
 
 }
