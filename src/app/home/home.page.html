@@ -12,10 +12,10 @@
 
 <ion-content [fullscreen]="true">
   <div id="cerrarcuenta">
-    <ion-button (click)="navegar('login')" color="translucent"><ion-icon src="assets/logout.svg" id="cerrar"></ion-icon></ion-button>
+    <ion-button (click)="logout()" color="translucent"><ion-icon src="assets/logout.svg" id="cerrar"></ion-icon></ion-button>
   </div>
 <div id="fondo">
-
+  <div>{{this.funciones.usuarioLogeado}}</div>
   <ion-card (click)="navegar('viaje')" id="cardh"> 
     <ion-card-header>
       <ion-card-title>Registrar Viaje </ion-card-title>

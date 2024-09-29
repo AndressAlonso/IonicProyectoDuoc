@@ -12,41 +12,18 @@
 
 <ion-content [fullscreen]="true">
   <div id="contenedor">
-    <ion-card>
+    <ion-card *ngFor="let viaje of viajes; let i = index">
       <ion-card-header>
-        <ion-card-title>Bollenar</ion-card-title>
-        <ion-card-subtitle>Andres Alvarado</ion-card-subtitle>
+        <ion-card-title>{{viaje.destino}}</ion-card-title>
+        <ion-card-subtitle>{{viaje.conductor}}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <span><strong>Hora Salida:</strong> 18:45</span>
-        <span><strong>Valor Pasaje:</strong> $1.300</span>
-        <span><strong>Pasajeros:</strong> 2/4</span>
-        <ion-button (click)="navegar('transporte2')" color="dark">Unirse</ion-button>
+        <span><strong>Hora Salida:</strong> {{viaje.horaSalida}}</span>
+        <span><strong>Valor Pasaje:</strong> ${{viaje.MontoCobrar}}</span>
+        <span><strong>Pasajeros:</strong> {{viaje.cantidadPasajeros}}</span>
+        <ion-button (click)="entrarAlViaje(viaje.conductor)" color="dark">Unirse</ion-button>
       </ion-card-content>
     </ion-card>
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Bollenar</ion-card-title>
-        <ion-card-subtitle>Andres Alvarado</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <span><strong>Hora Salida:</strong> 18:45</span>
-        <span><strong>Valor Pasaje:</strong> $1.300</span>
-        <span><strong>Pasajeros:</strong> 2/4</span>
-        <ion-button (click)="navegar('transporte2')" color="dark">Unirse</ion-button>
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Bollenar</ion-card-title>
-        <ion-card-subtitle>Andres Alvarado</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <span><strong>Hora Salida:</strong> 18:45</span>
-        <span><strong>Valor Pasaje:</strong> $1.300</span>
-        <span><strong>Pasajeros:</strong> 2/4</span>
-        <ion-button (click)="navegar('transporte2')" color="dark">Unirse</ion-button>
-      </ion-card-content>
-    </ion-card>
+    
   </div>
 </ion-content>

@@ -18,24 +18,23 @@
     </div>
     <div id="inputs">
       <ion-input id="inputV" type="ViajeDestino" label="Destino" labelPlacement="floating"
-        helperText="Ingresa tu destino" errorText="" aria-label="Light input" color="light" autofocus="true"></ion-input>
+        helperText="Ingresa tu destino" errorText="" aria-label="Light input" color="light" autofocus="true" [(ngModel)]="destino" ></ion-input>
       <ion-input id="inputV" type="PuntoEncuentro" label="Punto de Encuentro" labelPlacement="floating"
-        helperText="Ingresa el Punto de encuentro" errorText="" aria-label="Light input" color="light" autofocus="true"></ion-input>
+        helperText="Ingresa el Punto de encuentro" errorText="" aria-label="Light input" color="light" autofocus="true" [(ngModel)]="puntoEncuentro"></ion-input>
 
       <ion-input id="inputV" type="CantidadPasajeros" label="Cantidad de Pasajeros" labelPlacement="floating"
         helperText="Capacidad de pasajeros que puedes llevar" errorText="" aria-label="Light input"
-        color="light"></ion-input>
+        color="light" [(ngModel)]="cantidadPasajeros"></ion-input>
 
       <ion-input id="inputV" type="horaSalida" label="Hora de salida" labelPlacement="floating"
-        helperText="Ingresa hora de salida" errorText="" aria-label="Light input" color="light"></ion-input>
+        helperText="Ingresa hora de salida" errorText="" aria-label="Light input" color="light" [(ngModel)]="horaSalida"></ion-input>
 
       <ion-input id="inputV" type="CostoxPasajero" label="Monto a cobrar" labelPlacement="floating"
-        helperText="Ingresa tu viaje de destino" errorText="" aria-label="Light input" color="light"></ion-input>
+        helperText="Ingresa tu viaje de destino" errorText="" aria-label="Light input" color="light"[(ngModel)]="MontoCobrar" ></ion-input>
 
       <ion-input id="inputV" type="ComentariosExtras" label="Comentarios" labelPlacement="floating"
-        helperText="Comentarios (Opcional)" errorText="" aria-label="Light input" color="light"></ion-input>
-
+        helperText="Comentarios (Opcional)" errorText="" aria-label="Light input" color="light" [(ngModel)]="comentarios"></ion-input>
     </div>
-    <ion-button id="btnInViaje" color="translucent" (click)="navegar('viaje2')">Registrar Viaje</ion-button>
+    <ion-button id="btnInViaje" color="translucent" (click)="VerificarCampos()">Registrar Viaje</ion-button>
   </div>
 </ion-content>

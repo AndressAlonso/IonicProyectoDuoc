@@ -10,7 +10,8 @@ declare var google: any;
   templateUrl: './viaje2.page.html',
   styleUrls: ['./viaje2.page.scss'],
 })
-export class Viaje2Page implements OnInit {
+
+export class Viaje2Page {
   @ViewChild('map', { static: false }) mapElement!: ElementRef;
   map!: any;
   infoWindow!: any;
@@ -38,6 +39,7 @@ export class Viaje2Page implements OnInit {
       ]
     }
   ];
+
   fecha = new Date().toLocaleDateString('es-ES', {
     day: '2-digit',
     month: '2-digit',
@@ -50,18 +52,93 @@ export class Viaje2Page implements OnInit {
     second: undefined,
     hour12: false,
   });
+  usuarios: any[] = [];
+  viajes: any[] = [];
+  viajeUsuario: any;
+  constructor(private router: Router, public funciones: FuncionesCompartidasService, public ngZone: NgZone) {
+    if (localStorage.getItem('usuarios')) {
+      this.usuarios = JSON.parse(localStorage.getItem('usuarios')!);
+    }
+    if (localStorage.getItem('viajes')) {
+      this.viajes = JSON.parse(localStorage.getItem('viajes')!);
+    }
+    this.usuarios.forEach(usuario => {
+      if (usuario.logIn == true) {
+        this.funciones.usuarioLogeado = usuario.usuario;
+        localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
+      }
+    });
+  }
 
-  constructor(private router: Router, public funciones: FuncionesCompartidasService, public ngZone: NgZone) {}
+  actualizarViaje(){
+    if (localStorage.getItem('viajes')) {
+      this.viajes = JSON.parse(localStorage.getItem('viajes')!);
+    }
+  }
+  getTotal() {
+    const monto = parseFloat(this.viajeUsuario?.MontoCobrar) || 0;
+    const cantidad = parseFloat(this.viajeUsuario?.cantidadPasajeros) || 0;
+    return monto * cantidad;
+  }
 
   ionViewDidEnter() {
     this.ngZone.run(() => {
       this.loadMap();
-      var botones = document.querySelectorAll('.gmnoprint');
     });
-
+    if (localStorage.getItem('usuarios')) {
+      this.usuarios = JSON.parse(localStorage.getItem('usuarios')!);
+    }
+    if (localStorage.getItem('viajes')) {
+      this.viajes = JSON.parse(localStorage.getItem('viajes')!);
+    }
+    this.usuarios.forEach(usuario => {
+      if (usuario.logIn == true) {
+        this.funciones.usuarioLogeado = usuario.usuario;
+        localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
+      }
+    });
   }
-  ngOnInit() {}
 
+  ionViewWillEnter() {
+    if (localStorage.getItem('usuarios')) {
+      this.usuarios = JSON.parse(localStorage.getItem('usuarios')!);
+    }
+    if (localStorage.getItem('viajes')) {
+      this.viajes = JSON.parse(localStorage.getItem('viajes')!);
+    }
+    this.getViaje();
+    this.usuarios.forEach(usuario => {
+      if (usuario.logIn == true) {
+        this.funciones.usuarioLogeado = usuario.usuario;
+        localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
+      }
+    });
+  }
+
+  getViaje() {
+    if (!this.viajes || this.viajes.length === 0) {
+      console.log('No hay viajes disponibles');
+    }
+
+    if (!this.funciones.usuarioLogeado) {
+      console.log('No hay ningún usuario logeado');
+    }
+
+    const viaje = this.viajes.find(viaje => viaje.conductor === this.funciones.usuarioLogeado);
+
+    if (viaje) {
+      console.log('Viaje encontrado:', viaje);
+      this.viajeUsuario = viaje;
+      console.log(this.viajeUsuario)
+    } else {
+      console.log('No se encontró el viaje para el usuario logeado:', this.funciones.usuarioLogeado);
+    }
+  }
+  cambiarEstadoViaje(texto:string) {
+    this.viajeUsuario.estado = texto;
+    localStorage.setItem('viajes', JSON.stringify(this.viajes));
+    this.funciones.showToast('Viaje iniciado');
+  }
 
   loadMap() {
     const mapOptions = {
@@ -75,18 +152,18 @@ export class Viaje2Page implements OnInit {
       scaleControl: true,
       gestureHandling: 'greedy', // Optimizar gestos táctiles
     };
-  
+
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     this.infoWindow = new google.maps.InfoWindow();
-  
+
     const locationButton = document.createElement('button');
     locationButton.textContent = 'Tu Ubicacion Actual';
     locationButton.classList.add('custom-map-control-button');
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  
+
     // Aplicar el estilo con variables CSS
     this.applyCustomButtonStyles(locationButton);
-  
+
     locationButton.addEventListener('click', () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -95,7 +172,7 @@ export class Viaje2Page implements OnInit {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             };
-  
+
             this.infoWindow.setPosition(pos);
             this.infoWindow.setContent('<div id="locationbtn">Estas Aqui!</div>');
             this.infoWindow.open(this.map);
@@ -117,16 +194,14 @@ export class Viaje2Page implements OnInit {
     }, 1000);
     locationButton.click();
   }
-  
+
   applyCustomButtonStyles(button: HTMLElement) {
-    button.style.backgroundColor = 'var(--fondo1)'; 
+    button.style.backgroundColor = 'var(--fondo1)';
     button.style.color = 'var(--log)';
     button.style.border = 'none';
-    button.style.padding = '10px'; 
+    button.style.padding = '10px';
     button.style.borderRadius = '5px';
   }
-  
-  
 
   handleLocationError(browserHasGeolocation: boolean, infoWindow: any, pos: any) {
     infoWindow.setPosition(pos);
@@ -149,4 +224,5 @@ export class Viaje2Page implements OnInit {
   obtenerIcono() {
     return this.funciones.getIcono();
   }
+
 }

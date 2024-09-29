@@ -12,13 +12,13 @@
 
 <ion-content [fullscreen]="true">
   <div id="contenedor">
-    <h3>Tu Viaje</h3>
-    <span>En espera</span>
+    <h3>Tu Viaje a {{viajeUsuario?.destino}} </h3>
+    <span>{{viajeUsuario?.estado}} </span>
     <div id="viaje-img">
       <div id="descripcion">
 
         <div id="fechaHora">
-          <span>Hora salida: {{hora}} </span>
+          <span>Hora salida: {{viajeUsuario?.horaSalida}} </span>
           <span>{{fecha}} </span>
         </div>
       </div>
@@ -29,7 +29,7 @@
     <div id="viaje-img">
       <div id="descripcion">
         <div id="fechaHora">
-          <span>Hora salida: {{hora}} </span>
+          <span>Hora salida: {{viajeUsuario?.horaSalida}} </span>
           <span>{{fecha}} </span>
         </div>
       </div>
@@ -48,16 +48,16 @@
         <p>55 minutos, Trafico fluido</p>
       </div>
       <div><ion-icon src="assets/finish_flag.svg" alt=""></ion-icon>
-        <p>Manantiales, Región Metropolitana de Santiago, Chile</p>
+        <p>>{{viajeUsuario?.destino}}</p>
       </div>
     </div>
     <h2>Detalles</h2>
     <div id="detalles">
       <div> <ion-icon src="assets/passenger.svg" alt=""></ion-icon>
-        <p>Cantidad de pasajero(s): 2/4</p>
+        <p>Cantidad de pasajero(s): {{viajeUsuario?.cantidadPasajeros}}</p>
       </div>
       <div> <ion-icon src="assets/money.svg" alt=""></ion-icon>
-        <p>Costo de viaje: $1300 por persona</p>
+        <p>Costo de viaje: ${{viajeUsuario?.MontoCobrar}} por persona</p>
       </div>
       <div>
         <ion-icon src="assets/travel.svg" alt=""></ion-icon>
@@ -67,13 +67,13 @@
         <ion-icon src="assets/location.svg" alt=""></ion-icon>
        <div id="descMonto"> 
         <span>Punto de encuentro</span>
-        <span>--Estacionamiento Duoc--</span></div>
+        <span>--{{viajeUsuario?.puntoEncuentro}}--</span></div>
       </div>
     </div>
     <div id="detalles-loc">
       <h2>Monto a Recolectar</h2>
-      <p>$1300 pesos x Persona</p>
-      <p>Monto Total: $2600</p>
+      <p>${{viajeUsuario?.MontoCobrar}} pesos x Persona({{viajeUsuario?.cantidadPasajeros}})</p>
+      <p>Monto Total: ${{getTotal()}}</p>
     </div>
     <ion-modal #modal trigger="open-modal">
       <ng-template>
@@ -85,45 +85,31 @@
             </ion-buttons>
           </ion-toolbar>
           <ion-list>
-            <ion-item>
-              <ion-avatar slot="start">
-                <ion-icon name="user" src="assets/profile.svg" ></ion-icon>
-              </ion-avatar>
+            <ion-item *ngIf="viajeUsuario?.pasajeros.length === 0">
               <ion-label>
-                <h2>Benjamin</h2>
-                <p>Paga en efectivo</p>
-                <p>Baja en Maria Pinto</p>
+                <h2>No hay pasajeros.</h2>
               </ion-label>
             </ion-item>
-            <ion-item>
+          
+            <ion-item *ngFor="let pasajero of viajeUsuario?.pasajeros">
               <ion-avatar slot="start">
-                <ion-icon name="user" src="assets/profile.svg" ></ion-icon>
+                <ion-icon name="user" src="assets/profile.svg"></ion-icon>
               </ion-avatar>
               <ion-label>
-                <h2>Andres</h2>
-                <p>Paga en efectivo</p>
-                <p>Baja en Bollenar</p>
+                <h2>{{ pasajero.usuario }}</h2>
+                <p>Paga en: {{ pasajero.destino }}</p>
+                <p>Baja en: {{ pasajero.fPago }}</p>
               </ion-label>
             </ion-item>
-            <ion-item>
-              <ion-avatar slot="start">
-                <ion-icon name="user" src="assets/profile.svg" ></ion-icon>
-              </ion-avatar>
-              <ion-label>
-                <h2>Felipe</h2>
-                <p>Paga en transferencia</p>
-                <p>Baja en Bollenar</p>
-              </ion-label>
-            </ion-item>
-            
           </ion-list>
         </ion-content>
       </ng-template>
     </ion-modal>
+
   <div id="botonera">
-    <ion-button (click)="navegar('resumen-viaje')" color="tertiary">Comenzar Viaje</ion-button>
-    <ion-button (click)="navegar('resumen-viaje')" color="danger">Terminar Viaje</ion-button>
-    <ion-button id="open-modal" expand="block">Ver Pasajeros</ion-button>
+    <ion-button (click)="cambiarEstadoViaje('Viaje Iniciado')" color="tertiary">Comenzar Viaje</ion-button>
+    <ion-button (click)="cambiarEstadoViaje('Viaje Terminado')" color="danger">Terminar Viaje</ion-button>
+    <ion-button id="open-modal" (click)="actualizarViaje()" expand="block">Ver Pasajeros</ion-button>
 
   </div>
   </div>

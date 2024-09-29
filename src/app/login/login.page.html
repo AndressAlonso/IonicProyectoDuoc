@@ -6,6 +6,7 @@
   <!--Icono para cambiar a modo oscuro-->
 <ion-icon src="assets/{{funciones.icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
   <div id="fondo">
+    <div>{{funciones.usuarioLogeado}}</div>
     <div id="icon">
       <img src="assets/logouber.png" alt="" id="img">
     </div>
@@ -20,4 +21,7 @@
       <ion-button (click)="login()" shape="round" color="light" id="boton">Iniciar sesión</ion-button>
     </div>
   </div>
+  <div id="footer"></div>
+
 </ion-content>
+

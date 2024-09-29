@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FuncionesCompartidasService {
+  usuarioLogeado: string = "Ninguno";
+  public usuarios: any[] = []
   public icono = 'Dark';
-  constructor(private toast: ToastController) { }
-
+  constructor(private toast: ToastController, public router: Router) {
+  }
+  navegar(page: string) {
+    this.router.navigate([page]);
+  }
   cambiarTema() {
     if (this.icono == "Light") {
       document.documentElement.style.setProperty("--fondo1", "#1F1F1F")
@@ -68,5 +74,9 @@ export class FuncionesCompartidasService {
       cssClass: 'rounded-toast'
     });
     await toast.present();
+   
   }
+
+
+
 }

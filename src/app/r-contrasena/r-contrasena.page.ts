@@ -9,12 +9,16 @@ import { FuncionesCompartidasService } from '../services/funciones-compartidas.s
 export class RContrasenaPage implements OnInit {
   User: string = '';
   clave: string = '';
-  public usuarios: any[] = [{usuario:'admin', contraseña:'admin'}]
+  public usuarios: any[] = [{ usuario: 'admin', contraseña: 'admin' }]
 
   constructor(public funciones: FuncionesCompartidasService) {
     if (localStorage.getItem('usuarios')) {
       this.usuarios = JSON.parse(localStorage.getItem("usuarios")!);
     }
+  }
+
+  ngOnDestroy() {
+    localStorage.setItem('usuarios', JSON.stringify(this.usuarios));
   }
 
   ngOnInit() {
@@ -32,24 +36,26 @@ export class RContrasenaPage implements OnInit {
     this.funciones.showToast(texto);
   }
 
-  CrearUsuario(User: string, clave: string) {
-    this.usuarios.forEach(user => {
-      if (user.usuario === this.User) {
-        this.showToast('Ese nombre de usuario ya esta en uso!.')
-      } else {
-        if (User === '' || clave === '' || User.length <= 6 || clave.length <= 6) {
-          this.showToast('Los campos deben tener mas de 6 caracteres y no deben estar en blanco!.')
-        } else {
-          this.Registro({ usuario: User, contraseña: clave });
-          this.showToast('Te has Registrado!.')
-        }
-      }
-    });
-  }
+  CrearUsuario(User:string, clave:string) {
+    if (User === '' || clave === '' || User.length <= 6 || clave.length <= 6) {
+      this.showToast('Los campos deben tener más de 6 caracteres y no deben estar en blanco!');
+    } else {
 
+      const usuarioExistente = this.usuarios.find(user => user.usuario === User);
+      
+      if (usuarioExistente) {
+        this.showToast('Ese nombre de usuario ya está en uso!');
+      } else {
+        
+        this.Registro({ usuario: User, contraseña: clave, logIn: false });
+        this.showToast('Te has registrado exitosamente!');
+        this.funciones.navegar('login');
+      }
+    }
+  }
+  
   Registro(usuario: any) {
     this.usuarios.push(usuario)
-    console.log(usuario)
     console.log(this.usuarios)
     localStorage.setItem('usuarios', JSON.stringify(this.usuarios))
   }
