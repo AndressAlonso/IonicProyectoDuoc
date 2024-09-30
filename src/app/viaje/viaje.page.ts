@@ -42,6 +42,7 @@ export class ViajePage implements OnInit {
       }
     });
   }
+  
   VerificarCampos() {
     if (this.destino === "" || this.puntoEncuentro === "" || this.cantidadPasajeros === 0 || this.MontoCobrar === 0) {
       this.funciones.showToast('Debe llenar todos los campos!');

@@ -2,6 +2,7 @@ import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core'
 import { FuncionesCompartidasService } from '../services/funciones-compartidas.service';
 import { Router } from '@angular/router';
 import { style } from '@angular/animations';
+import { Platform } from '@ionic/angular';
 declare var google: any;
 
 
@@ -12,34 +13,27 @@ declare var google: any;
 })
 
 export class Viaje2Page {
-  @ViewChild('map', { static: false }) mapElement!: ElementRef;
-  map!: any;
-  infoWindow!: any;
-  mapStyles = [
-    {
-      featureType: 'all',
-      elementType: 'all',
-      stylers: [
-        { saturation: -80 }
-      ]
-    },
-    {
-      featureType: 'road',
-      elementType: 'geometry',
-      stylers: [
-        { lightness: 100 },
-        { visibility: 'simplified' }
-      ]
-    },
-    {
-      featureType: 'water',
-      elementType: 'geometry',
-      stylers: [
-        { color: '#00bfa5' }
-      ]
-    }
-  ];
-
+  carrito: any[] = []
+  
+  input = ""
+  
+  autocompleteItems!: any[];
+  
+  distancia = ""
+  
+  duracion = ""
+  
+  @ViewChild('map') mapElement: ElementRef | undefined;
+  
+  public map: any;
+  
+  public start: any = "Duoc UC: Sede Melipilla - Serrano, Melipilla, Chile";
+  
+  public end: any = "Pomaire";
+  
+  public directionsService: any;
+  
+  public directionsDisplay: any;
   fecha = new Date().toLocaleDateString('es-ES', {
     day: '2-digit',
     month: '2-digit',
@@ -55,7 +49,8 @@ export class Viaje2Page {
   usuarios: any[] = [];
   viajes: any[] = [];
   viajeUsuario: any;
-  constructor(private router: Router, public funciones: FuncionesCompartidasService, public ngZone: NgZone) {
+
+  constructor(private router: Router, public funciones: FuncionesCompartidasService, public zone: NgZone, private platform: Platform) {
     if (localStorage.getItem('usuarios')) {
       this.usuarios = JSON.parse(localStorage.getItem('usuarios')!);
     }
@@ -70,7 +65,7 @@ export class Viaje2Page {
     });
   }
 
-  actualizarViaje(){
+  actualizarViaje() {
     if (localStorage.getItem('viajes')) {
       this.viajes = JSON.parse(localStorage.getItem('viajes')!);
     }
@@ -82,9 +77,7 @@ export class Viaje2Page {
   }
 
   ionViewDidEnter() {
-    this.ngZone.run(() => {
-      this.loadMap();
-    });
+   
     if (localStorage.getItem('usuarios')) {
       this.usuarios = JSON.parse(localStorage.getItem('usuarios')!);
     }
@@ -97,6 +90,11 @@ export class Viaje2Page {
         localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
       }
     });
+    this.platform.ready().then(() => {
+
+      this.initMap()
+     
+     })
   }
 
   ionViewWillEnter() {
@@ -134,83 +132,10 @@ export class Viaje2Page {
       console.log('No se encontró el viaje para el usuario logeado:', this.funciones.usuarioLogeado);
     }
   }
-  cambiarEstadoViaje(texto:string) {
+  cambiarEstadoViaje(texto: string) {
     this.viajeUsuario.estado = texto;
     localStorage.setItem('viajes', JSON.stringify(this.viajes));
     this.funciones.showToast('Viaje iniciado');
-  }
-
-  loadMap() {
-    const mapOptions = {
-      center: { lat: -34.397, lng: 150.644 },
-      zoom: 15,
-      disableDefaultUI: true,
-      mapTypeControl: false,    // Desactiva el control de tipo de mapa
-      zoomControl: true,        // Mantiene el control de zoom activo
-      streetViewControl: false, // Desactiva el control de Street View
-      fullscreenControl: false, // Desactiva el control de pantalla completa
-      scaleControl: true,
-      gestureHandling: 'greedy', // Optimizar gestos táctiles
-    };
-
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    this.infoWindow = new google.maps.InfoWindow();
-
-    const locationButton = document.createElement('button');
-    locationButton.textContent = 'Tu Ubicacion Actual';
-    locationButton.classList.add('custom-map-control-button');
-    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-
-    // Aplicar el estilo con variables CSS
-    this.applyCustomButtonStyles(locationButton);
-
-    locationButton.addEventListener('click', () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            };
-
-            this.infoWindow.setPosition(pos);
-            this.infoWindow.setContent('<div id="locationbtn">Estas Aqui!</div>');
-            this.infoWindow.open(this.map);
-            this.map.setCenter(pos);
-          },
-          () => {
-            this.handleLocationError(true, this.infoWindow, this.map.getCenter());
-          }
-        );
-      } else {
-        this.handleLocationError(false, this.infoWindow, this.map.getCenter());
-      }
-    });
-    setTimeout(() => {
-      const satelliteButton = document.querySelector('button[title="Mostrar imágenes satelitales"]');
-      if (satelliteButton) {
-        satelliteButton.classList.add('hidden-button');
-      }
-    }, 1000);
-    locationButton.click();
-  }
-
-  applyCustomButtonStyles(button: HTMLElement) {
-    button.style.backgroundColor = 'var(--fondo1)';
-    button.style.color = 'var(--log)';
-    button.style.border = 'none';
-    button.style.padding = '10px';
-    button.style.borderRadius = '5px';
-  }
-
-  handleLocationError(browserHasGeolocation: boolean, infoWindow: any, pos: any) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(
-      browserHasGeolocation
-        ? 'Error: The Geolocation service failed.'
-        : "Error: Your browser doesn't support geolocation."
-    );
-    infoWindow.open(this.map);
   }
 
   navegar(ruta: string) {
@@ -224,5 +149,220 @@ export class Viaje2Page {
   obtenerIcono() {
     return this.funciones.getIcono();
   }
+
+
+  initMap() {
+
+    this.directionsService = new google.maps.DirectionsService;
+   
+    this.directionsDisplay = new google.maps.DirectionsRenderer;
+   
+    // let latLng = new google.maps.LatLng(this.latitude, this.longitude);
+   
+    let mapOptions = {
+   
+     // center: latLng,
+   
+     zoom: 5,
+   
+     zoomControl: false,
+   
+     scaleControl: false,
+   
+     mapTypeControl: false,
+   
+     streetViewControl: false,
+   
+     fullscreenControl: true,
+   
+     mapTypeId: google.maps.MapTypeId.ROADMAP,
+   
+    };
+   
+    this.map = new google.maps.Map(this.mapElement!.nativeElement, mapOptions);
+   
+    let infoWindow = new google.maps.InfoWindow();
+   
+   
+   
+    // Try HTML5 geolocation.
+   
+    if (navigator.geolocation) {
+   
+     navigator.geolocation.getCurrentPosition(
+   
+      (position: GeolocationPosition) => {
+   
+       const pos = {
+   
+        lat: position.coords.latitude,
+   
+        lng: position.coords.longitude,
+   
+       };
+   
+       // new google.maps.Marker({
+   
+       //  position: pos,
+   
+       //  map: this.map,
+   
+       // });
+   
+       infoWindow.setPosition(pos);
+   
+       infoWindow.setContent("Estas aquí.");
+   
+       infoWindow.open(this.map);
+   
+       this.map.setCenter(pos);
+   
+      }
+   
+     );
+   
+    }
+   
+   
+   
+   
+   
+    this.directionsDisplay.setMap(this.map);
+   
+    this.calculateAndDisplayRoute();
+   
+   }
+   
+   calculateAndDisplayRoute() {
+   
+    this.directionsService.route({
+   
+     origin: this.start,
+   
+     destination: this.end,
+   
+     travelMode: 'DRIVING'
+   
+    }, (response: any, status: string) => {
+   
+     if (status === 'OK') {
+   
+      this.directionsDisplay.setDirections(response);
+   
+      const route = response.routes[0];
+   
+      const leg = route.legs[0];
+   
+      // Distancia total
+   
+      const distanceInKilometers = (leg.distance.value / 1000).toFixed(2);
+   
+      console.log(`Distancia: ${distanceInKilometers} km`);
+   
+      this.distancia = `${distanceInKilometers} km`;
+   
+      // Tiempo de viaje
+   
+      const durationInSeconds = leg.duration.value;
+   
+      const minutes = Math.floor(durationInSeconds / 60); // minutos
+   
+      const seconds = durationInSeconds % 60; // segundos
+   
+      const formattedDuration = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+   
+      console.log(`Duración: ${formattedDuration} (mm:ss)`);
+   
+      this.duracion = `${formattedDuration}`;
+   
+      // Información sobre origen y destino
+   
+      console.log(`Inicio: ${leg.start_address}`);
+   
+      console.log(`Destino: ${leg.end_address}`);
+   
+   
+   
+      // Tiempo de viaje en tráfico
+   
+      if (leg.duration_in_traffic) {
+   
+       const durationInTraffic = leg.duration_in_traffic.value / 60;
+   
+       console.log(`Tiempo de viaje en tráfico: ${durationInTraffic} minutos`);
+   
+      }
+   
+   
+   
+    
+   
+      leg.steps.forEach((step: any, index: number) => {
+   
+       const stepDistance = step.distance.value / 1000; // en km
+   
+       const stepDuration = step.duration.value / 60; // en minutos
+   
+   
+   
+       console.log(`Paso ${index + 1}: ${step.instructions}, Distancia: ${stepDistance} km, Tiempo: ${stepDuration} minutos`);
+   
+      });
+   
+   
+   
+     } else {
+   
+      window.alert('Directions request failed due to ' + status);
+   
+     }
+   
+    });
+   
+   }
+   
+   
+   
+   updateSearchResults() {
+   
+    let GoogleAutocomplete = new google.maps.places.AutocompleteService();
+   
+    if (this.end == '') {
+   
+     this.autocompleteItems = [];
+   
+     return;
+   
+    }
+   
+    GoogleAutocomplete!.getPlacePredictions({ input: this.end },
+   
+     (predictions: any, status: any) => {
+   
+      this.autocompleteItems = [];
+   
+      this.zone.run(() => {
+   
+       predictions.forEach((prediction: any) => {
+   
+        this.autocompleteItems!.push(prediction);
+   
+       });
+   
+      });
+   
+     });
+   
+   }
+   
+   selectSearchResult(item: any) {
+   
+    this.end = item.description
+   
+    this.autocompleteItems = []
+   
+    this.initMap()
+   
+   }
 
 }
