@@ -18,30 +18,33 @@
     bottom: calc(5rem + 10px);
     z-index: 100;
     width: 80%;
+    color: var(--log);
+  background-color: var(--fondo1);
     left: 10%;
     height: 3rem;
     border-radius: 10px;
-    background-color: #ffffff85;
     border: 1px #cbcbcb solid;
     padding: 0px 10px;
   }
   
   #rutas {
     position: absolute;
-    bottom: 9rem;
+    bottom: 15rem;
     left: 10%;
     width: 80%;
     height: fit-content;
     z-index: 100;
-    background-color: #ffffffc7;
+    background-color: var(--fondo1);
     border-radius: 10px;
     padding: 10px;
+    color: var(--log);
   }
   
   .ruta {
     height: 2.4rem;
     border-bottom: 1px #e3e3e3 solid;
     line-height: 2.4rem;
+    
   }
   
   .ruta:last-child{
@@ -52,8 +55,9 @@
     position: absolute;
     top: 0;
     height: 3rem;
+    color: var(--log);
     z-index: 101;
-    background-color: #ffffffc7;
+    background-color: var(--fondo1);
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -79,6 +83,7 @@
     color: #1F1F1F !important;
     border-radius: 20px;
 }
+
 
 #mapa {
     height: 50vh;

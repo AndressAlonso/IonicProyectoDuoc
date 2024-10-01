@@ -14,17 +14,7 @@
   <div id="contenedor">
     <h3>Tu Viaje a {{viajeUsuario?.destino}} </h3>
     <span>{{viajeUsuario?.estado}} </span>
-    <div id="viaje-img">
-      <div id="descripcion">
-
-        <div id="fechaHora">
-          <span>Hora salida: {{viajeUsuario?.horaSalida}} </span>
-          <span>{{fecha}} </span>
-        </div>
-      </div>
-      <img src="assets\Ubicacion.jpg" alt="">
-      <span>Tu destino</span>
-    </div>
+    
 
     <div id="viaje-img">
       <div id="descripcion">
@@ -47,14 +37,8 @@
           </div>
       
           <div #map id="map"></div>
-      
-          <input type="text" [(ngModel)]="end" (input)="updateSearchResults()" placeholder="Destino" id="input">
-          <div id="rutas" *ngIf="autocompleteItems" [hidden]="autocompleteItems.length == 0">
-            <div class="ruta" *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
-              {{ item.description }}
-            </div>
-          </div>
-        </div>    
+          
+        </div>
       </div>
       <span>Tu ubicacion</span>
     </div>
@@ -65,10 +49,10 @@
         <p>Serrano 1105, Melipilla, Región Metropolitana</p>
       </div>
       <div><ion-icon src="assets/time.svg" alt=""></ion-icon>
-        <p>55 minutos, Trafico fluido</p>
+        <p>{{duracion}}</p>
       </div>
       <div><ion-icon src="assets/finish_flag.svg" alt=""></ion-icon>
-        <p>>{{viajeUsuario?.destino}}</p>
+        <p>{{viajeUsuario?.destino}}</p>
       </div>
     </div>
     <h2>Detalles</h2>
