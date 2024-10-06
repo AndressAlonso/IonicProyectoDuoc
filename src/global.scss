@@ -106,11 +106,24 @@ ion-content *::not(#locationbtn) {
   }
 
 }
+/* Estilo para el scrollbar en navegadores WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 0px !important; /* Ancho del scrollbar */
+}
 
+::-webkit-scrollbar-thumb {
+  background-color: darkgray; /* Color del "pulgar" del scrollbar */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+::-webkit-scrollbar-track {
+  background: lightgray; /* Color de la pista */
+}
 
 *:not(ion-toast) {
   transition: all 0.6s ease-in-out;
   color: var(--log);
+  box-sizing: none ;
  
 }
 

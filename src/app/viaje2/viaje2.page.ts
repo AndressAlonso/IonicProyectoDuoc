@@ -2,7 +2,7 @@ import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core'
 import { FuncionesCompartidasService } from '../services/funciones-compartidas.service';
 import { Router } from '@angular/router';
 import { style } from '@angular/animations';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 declare var google: any;
 
 
@@ -34,6 +34,7 @@ export class Viaje2Page {
   public end: any = "Pomaire";
 
   public directionsService: any;
+  isModalOpen = false;
 
   public directionsDisplay: any;
   fecha = new Date().toLocaleDateString('es-ES', {
@@ -63,9 +64,15 @@ export class Viaje2Page {
         localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
       }
     });
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.funciones.handleBackButton();
+    });
   }
-
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
   actualizarViaje() {
+    localStorage.setItem('viajes', JSON.stringify(this.viajes));
     if (localStorage.getItem('viajes')) {
       this.viajes = JSON.parse(localStorage.getItem('viajes')!);
     }
@@ -111,6 +118,7 @@ export class Viaje2Page {
         localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
       }
     });
+
   }
 
   getViaje() {
@@ -136,7 +144,7 @@ export class Viaje2Page {
   cambiarEstadoViaje(texto: string) {
     this.viajeUsuario.estado = texto;
     localStorage.setItem('viajes', JSON.stringify(this.viajes));
-    this.funciones.showToast('Viaje iniciado');
+    this.funciones.showToast(texto);
   }
 
   navegar(ruta: string) {
@@ -210,29 +218,40 @@ export class Viaje2Page {
 
           // });
 
-          infoWindow.setPosition(pos);
 
           infoWindow.setContent("Estas aquí.");
 
           infoWindow.open(this.map);
 
           this.map.setCenter(pos);
-
+          this.obtenerDireccion(pos);
         }
 
       );
 
     }
-
-
-
-
-
     this.directionsDisplay.setMap(this.map);
 
     this.calculateAndDisplayRoute();
 
   }
+  obtenerDireccion(pos: google.maps.LatLngLiteral) {
+    let geocoder = new google.maps.Geocoder();
+  
+    geocoder.geocode({ location: pos }, (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
+      if (status === google.maps.GeocoderStatus.OK) {
+        if (results[0]) {
+          console.log("Dirección: ", results[0].formatted_address);
+        } else {
+          console.log("No se encontraron resultados.");
+        }
+      } else {
+        console.log("Error en el geocodificador: " + status);
+      }
+    });
+    
+  }
+  
 
   calculateAndDisplayRoute() {
 
@@ -270,13 +289,11 @@ export class Viaje2Page {
 
         const seconds = durationInSeconds % 60; // segundos
 
-        const formattedDuration = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        const formattedDuration = `${minutes.toString().padStart(2, '0')}`;
 
         console.log(`Duración: ${formattedDuration} (mm:ss)`);
 
         this.duracion = `${formattedDuration}`;
-
-        // Información sobre origen y destino
 
         console.log(`Inicio: ${leg.start_address}`);
 
@@ -321,8 +338,6 @@ export class Viaje2Page {
     });
 
   }
-
-
 
   updateSearchResults() {
 

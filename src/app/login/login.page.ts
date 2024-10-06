@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
   usuarios: any[] = [];
   //Animacion del logo de la app
   ngOnInit() {
+    this.VerificarUsuarioConectado();
     this.anim.create()
       .addElement(document.querySelector("#img")!)
       .duration(2000)
@@ -39,16 +40,25 @@ export class LoginPage implements OnInit {
       this.usuarios = JSON.parse(localStorage.getItem("usuarios")!);
     }
   }
-  ionVIewWillEnter() {
-    if (localStorage.getItem("usuarios")) {
-      this.usuarios = JSON.parse(localStorage.getItem("usuarios")!);
-    }
-  }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     if (localStorage.getItem("usuarios")) {
       this.usuarios = JSON.parse(localStorage.getItem("usuarios")!);
     }
+    this.VerificarUsuarioConectado();
+  }
+  VerificarUsuarioConectado() {
+    const usuarioConectado = this.usuarios.find(usuario => {
+      if (usuario.logIn == true) {
+        this.funciones.usuarioLogeado = usuario.usuario;
+        localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
+        this.navegar('home');
+      }
+    });
+
+  }
+  ionViewDidEnter() {
+    this.VerificarUsuarioConectado();
   }
   ionWillLeave() {
 
@@ -83,7 +93,7 @@ export class LoginPage implements OnInit {
       }
     });
   }
-  
+
 
   //Animacion de la contraseña
   animaInput(input: string) {

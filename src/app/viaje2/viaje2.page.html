@@ -10,112 +10,147 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" >
   <div id="contenedor">
-    <h3>Tu Viaje a {{viajeUsuario?.destino}} </h3>
-    <span>{{viajeUsuario?.estado}} </span>
+    <div id="viajeTitle">
+      <div id="GoBack">
+        <ion-icon src="assets/back.svg" alt="" (click)="navegar('home')"></ion-icon>
+      </div>
+      <h3>Tu Viaje a {{viajeUsuario?.destino}} </h3>
+      <div id="reLoad">
+        <ion-icon src="assets/reload.svg" alt="" (click)="funciones.reloadPage()"></ion-icon>
+      </div>
+    </div>
     
+    <span>{{viajeUsuario?.estado}} </span>
 
     <div id="viaje-img">
       <div id="descripcion">
         <div id="fechaHora">
-          <span>Hora salida: {{viajeUsuario?.horaSalida}} </span>
+          <span>{{viajeUsuario?.horaSalida}} </span>
           <span>{{fecha}} </span>
         </div>
       </div>
       <div id="mapa">
         <div id="mapa">
-          <div id="info-viaje">
-            <div class="distancia">
-              <ion-icon name="analytics"></ion-icon>
-              {{distancia}}
-            </div>
-            <div class="tiempo">
-              <ion-icon name="time"></ion-icon>
-              {{duracion}}
+          <div #map id="map"></div>
+        </div>
+      </div>
+      <span>{{end}}</span>
+    </div>
+    <h2>Detalles</h2>
+    <div class="Detalless">
+      <div id="pEncuentroC">
+        
+      </div>
+      <div id="datosViaje">
+      
+        <div id="tiempoEstimado">
+          <div>
+            <ion-icon src="assets/location.svg" alt=""></ion-icon>
+            <span>{{start}}</span>
+          </div>
+          <div>
+            <ion-icon src="assets/time.svg" alt=""></ion-icon>
+            <span>{{duracion}} Minutos</span>
+          </div>
+          <div>
+            <ion-icon src="assets/finish_flag.svg" alt=""></ion-icon>
+            <span>Destino: {{viajeUsuario?.destino}}</span>
+          </div>
+        </div>
+        <div id="detalles">
+          <div>
+            <ion-icon src="assets/passenger.svg" alt=""></ion-icon>
+            <span>Asientos Disponibles {{viajeUsuario?.pasajeros.length}} / {{viajeUsuario?.cantidadPasajeros}}</span>
+          </div>
+          <div> 
+            <ion-icon src="assets/money.svg" alt=""></ion-icon>
+            <span>${{viajeUsuario?.MontoCobrar}} por persona</span>
+          </div>
+          <div id="pEncuentro">
+            <ion-icon src="assets/location.svg" alt=""></ion-icon>
+            <div id="descMonto">
+              <span>Punto de Encuentro: {{viajeUsuario?.puntoEncuentro}}</span>
             </div>
           </div>
-      
-          <div #map id="map"></div>
           
         </div>
       </div>
-      <span>Tu ubicacion</span>
     </div>
-
-    <div id="tiempoEstimado">
-      <div>
-        <ion-icon src="assets/location.svg" alt=""></ion-icon>
-        <p>Serrano 1105, Melipilla, Región Metropolitana</p>
-      </div>
-      <div><ion-icon src="assets/time.svg" alt=""></ion-icon>
-        <p>{{duracion}}</p>
-      </div>
-      <div><ion-icon src="assets/finish_flag.svg" alt=""></ion-icon>
-        <p>{{viajeUsuario?.destino}}</p>
-      </div>
-    </div>
-    <h2>Detalles</h2>
-    <div id="detalles">
-      <div> <ion-icon src="assets/passenger.svg" alt=""></ion-icon>
-        <p>Cantidad de pasajero(s): {{viajeUsuario?.cantidadPasajeros}}</p>
-      </div>
-      <div> <ion-icon src="assets/money.svg" alt=""></ion-icon>
-        <p>Costo de viaje: ${{viajeUsuario?.MontoCobrar}} por persona</p>
-      </div>
-      <div>
-        <ion-icon src="assets/travel.svg" alt=""></ion-icon>
-        <p>Tipo de Vehiculo: Auto</p>
-      </div>
-      <div>
-        <ion-icon src="assets/location.svg" alt=""></ion-icon>
-       <div id="descMonto"> 
-        <span>Punto de encuentro</span>
-        <span>--{{viajeUsuario?.puntoEncuentro}}--</span></div>
-      </div>
-    </div>
+    
+   <div id="UltimosDetalles">
     <div id="detalles-loc">
       <h2>Monto a Recolectar</h2>
-      <p>${{viajeUsuario?.MontoCobrar}} pesos x Persona({{viajeUsuario?.cantidadPasajeros}})</p>
+      <p>${{viajeUsuario?.MontoCobrar}} pesos x Pasajero({{viajeUsuario?.pasajeros.length}})</p>
       <p>Monto Total: ${{getTotal()}}</p>
     </div>
-    <ion-modal #modal trigger="open-modal">
-      <ng-template>
-        <ion-content>
-          <ion-toolbar>
-            <ion-title>Pasajeros</ion-title>
-            <ion-buttons slot="end">
-              <ion-button color="" id="closebtn" (click)="modal.dismiss()">Cerrar</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-          <ion-list>
-            <ion-item *ngIf="viajeUsuario?.pasajeros.length === 0">
-              <ion-label>
-                <h2>No hay pasajeros.</h2>
-              </ion-label>
-            </ion-item>
-          
-            <ion-item *ngFor="let pasajero of viajeUsuario?.pasajeros">
-              <ion-avatar slot="start">
-                <ion-icon name="user" src="assets/profile.svg"></ion-icon>
-              </ion-avatar>
-              <ion-label>
-                <h2>{{ pasajero.usuario }}</h2>
-                <p>Paga en: {{ pasajero.destino }}</p>
-                <p>Baja en: {{ pasajero.fPago }}</p>
-              </ion-label>
-            </ion-item>
-          </ion-list>
-        </ion-content>
-      </ng-template>
-    </ion-modal>
-
-  <div id="botonera">
-    <ion-button (click)="cambiarEstadoViaje('Viaje Iniciado')" color="tertiary">Comenzar Viaje</ion-button>
-    <ion-button (click)="cambiarEstadoViaje('Viaje Terminado')" color="danger">Terminar Viaje</ion-button>
-    <ion-button id="open-modal" (click)="actualizarViaje()" expand="block">Ver Pasajeros</ion-button>
-
-  </div>
+    
+    <div id="botonera">
+      <ion-button (click)="cambiarEstadoViaje('Viaje Iniciado')" color="tertiary">Comenzar Viaje</ion-button>
+      <ion-button (click)="cambiarEstadoViaje('Viaje Terminado')" color="danger">Terminar Viaje</ion-button>
+      <ion-button id="open-modal" (click)="actualizarViaje()" expand="block">Ver Pasajeros</ion-button>
+      <ion-button expand="block" (click)="setOpen(true)" color="light">Ver Transferencias</ion-button>
+    </div>
   </div>
 
+   </div>
+  <ion-modal #modal trigger="open-modal">
+    <ng-template>
+      <ion-content>
+        <ion-toolbar>
+          <ion-title>Pasajeros</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="" id="closebtn" (click)="modal.dismiss()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+        <ion-list>
+          <ion-item *ngIf="viajeUsuario?.pasajeros.length === 0">
+            <ion-label>
+              <h2>No hay pasajeros.</h2>
+            </ion-label>
+          </ion-item>
+
+          <ion-item *ngFor="let pasajero of viajeUsuario?.pasajeros">
+            <ion-avatar slot="start">
+              <ion-icon name="user" src="assets/profile.svg"></ion-icon>
+            </ion-avatar>
+            <ion-label>
+              <h2>{{ pasajero.usuario }}</h2>
+              <p>Baja en: {{ pasajero.destino }}</p>
+              <p>Metodo de Pago: {{ pasajero.pago }}</p>
+              <img src="pasajero.imagen" alt="">
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Transferencias</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="" style="background-color: var(--fondo1);">
+        <div id="Transferencias">
+          <div id="transferencia" *ngFor="let pasajero of viajeUsuario?.pasajeros">
+            <h3>{{pasajero.usuario}}</h3>
+            <div *ngIf="pasajero.pago === 'Efectivo'">
+              <p>Pago en efectivo</p>
+            </div>
+            <div *ngIf="pasajero.pago === 'Transferencia'">
+              <p>Transferencia realizada</p>
+              <img [src]="pasajero.imagen" alt="Imagen de la transferencia" width="80%">
+            </div>
+          </div>
+        </div>
+        
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

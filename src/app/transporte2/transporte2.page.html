@@ -12,68 +12,67 @@
 
 <ion-content [fullscreen]="true">
   <div id="contenedor">
-    <h3>Viaje de Andress</h3>
-    <span>En espera</span>
-    <div id="viaje-img">
-      <div id="descripcion">
-
-        <div id="fechaHora">
-          <span>Hora salida: {{hora}} </span>
-          <span>{{fecha}} </span>
-        </div>
+    <div id="viajeTitle">
+      <div id="GoBack">
+        <ion-icon src="assets/back.svg" alt="" (click)="navegar('home')"></ion-icon>
       </div>
-      <img src="assets\Ubicacion.jpg" alt="">
-      <span>Destino de Andres</span>
+      <h5> Viaje de {{viajeUsuario?.conductor}} </h5>
+      <div id="reLoad">
+        <ion-icon src="assets/reload.svg" alt="" (click)="funciones.reloadPage()"></ion-icon>
+      </div>
     </div>
-
+    <span>{{viajeUsuario?.estado}}</span>
     <div id="viaje-img">
       <div id="descripcion">
         <div id="fechaHora">
-          <span>Hora salida: {{hora}} </span>
+          <span>{{viajeUsuario?.horaSalida}} </span>
           <span>{{fecha}} </span>
         </div>
       </div>
       <div id="mapa">
-        <div #map id="map"></div>
+        <div id="mapa">
+          <div #map id="map"></div>
+        </div>
       </div>
-      <span>Tu ubicacion</span>
+      <span>{{end}}</span>
+    </div>
+    <div id="datosViaje">
+      <div id="tiempoEstimado">
+        <div>
+          <ion-icon src="assets/location.svg" alt=""></ion-icon>
+          <span>{{start}}</span>
+        </div>
+        <div>
+          <ion-icon src="assets/time.svg" alt=""></ion-icon>
+          <span>{{duracion}} Minutos</span>
+        </div>
+        <div>
+          <ion-icon src="assets/finish_flag.svg" alt=""></ion-icon>
+          <span>{{viajeUsuario?.destino}}</span>
+        </div>
+      </div>
+      <div id="detalles">
+        <div id="pEncuentro">
+          <ion-icon src="assets/location.svg" alt=""></ion-icon>
+          <span>Punto de Encuentro: {{viajeUsuario?.puntoEncuentro}}</span>
+        </div>
+        <div>
+          <ion-icon src="assets/passenger.svg" alt=""></ion-icon>
+          <span>Asientos Disponibles {{viajeUsuario?.cantidadPasajeros}}</span>
+        </div>
+        <div>
+          <ion-icon src="assets/money.svg" alt=""></ion-icon>
+          <span>${{viajeUsuario?.MontoCobrar}} por persona</span>
+        </div>
+
+
+      </div>
     </div>
 
-    <div id="tiempoEstimado">
-      <div>
-        <ion-icon src="assets/location.svg" alt=""></ion-icon>
-        <p>Serrano 1105, Melipilla, Región Metropolitana</p>
-      </div>
-      <div><ion-icon src="assets/time.svg" alt=""></ion-icon>
-        <p>55 minutos, Trafico fluido</p>
-      </div>
-      <div><ion-icon src="assets/finish_flag.svg" alt=""></ion-icon>
-        <p>Manantiales, Región Metropolitana de Santiago, Chile</p>
-      </div>
 
-    </div>
-    <h2>Detalles</h2>
-    <div id="detalles">
-      <div> <ion-icon src="assets/passenger.svg" alt=""></ion-icon>
-        <p>Cantidad de pasajero(s): 1/4</p>
-      </div>
-      <div> <ion-icon src="assets/money.svg" alt=""></ion-icon>
-        <p>Costo de viaje: $1300 por persona</p>
-      </div>
-      <div>
-        <ion-icon src="assets/travel.svg" alt=""></ion-icon>
-        <p>Tipo de Vehiculo: Auto</p>
-      </div>
-      <div>
-        <ion-icon src="assets/location.svg" alt=""></ion-icon>
-       <div id="descMonto"> 
-        <span>Punto de encuentro</span>
-        <span>--Estacionamiento Duoc--</span></div>
-      </div>
-    </div>
     <div id="detalles-loc">
       <h2>Monto A Pagar</h2>
-      <p> $1300 pesos</p>
+      <p> ${{viajeUsuario?.MontoCobrar}} pesos</p>
     </div>
     <ion-segment value="default" (ionChange)="onSegmentChange($event)">
       <ion-segment-button value="default">
@@ -83,19 +82,29 @@
         <ion-label>Efectivo</ion-label>
       </ion-segment-button>
     </ion-segment>
-    
-    <div *ngIf="selectedSegment === 'default'">
-      <p>Subir Imagen Transferencia</p>
+
+    <div *ngIf="selectedSegment === 'default'" id="Transferencia">
+      <ion-button color="light" id="botonT" (click)="selectImage()">Seleccionar Imagen</ion-button>
+      <div *ngIf="image">
+        <img [src]="image" alt="Imagen seleccionada" style="width: 100%; height: auto;" />
+        <ion-button color="light" id="botonT" (click)="uploadImage()">Subir Imagen</ion-button>
+      </div>
     </div>
     <div *ngIf="selectedSegment === 'segment'">
       <p>Pagar En efectivo</p>
     </div>
     <div id="inputDestino">
       <ion-input id="inputV" type="DestinoPasajero" label="Tu Destino" labelPlacement="floating"
-      helperText="Ingresa tu destino" errorText="" aria-label="Light input" color="light"></ion-input>
-      <ion-button (click)="navegar('resumen-viaje')" disabled="false" color="dark">Terminar Pago</ion-button>
+        [(ngModel)]="destinoPasajero" helperText="Ingresa tu destino" errorText="" aria-label="Light input"
+        color="light"></ion-input>
+      <ion-button color="light" id="botonT" (click)="actualizarDatosPasajero()" disabled="false" color="light">Ingresar
+        Datos de Viaje</ion-button>
+
+      <ion-button color="light" id="botonT" (click)="SalirViaje()" disabled="false" color="light">Salir
+        Viaje</ion-button>
+
     </div>
-   
+
   </div>
 
 </ion-content>

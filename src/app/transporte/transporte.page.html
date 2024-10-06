@@ -5,25 +5,54 @@
       <ion-title class="ion-text-center">
         Transporte
       </ion-title>
-    <ion-icon src="assets/{{funciones.icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
-  </div>
+      <ion-icon src="assets/{{funciones.icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div id="contenedor">
-    <ion-card *ngFor="let viaje of viajes; let i = index">
-      <ion-card-header>
-        <ion-card-title>{{viaje.destino}}</ion-card-title>
-        <ion-card-subtitle>{{viaje.conductor}}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <span><strong>Hora Salida:</strong> {{viaje.horaSalida}}</span>
-        <span><strong>Valor Pasaje:</strong> ${{viaje.MontoCobrar}}</span>
-        <span><strong>Pasajeros:</strong> {{viaje.cantidadPasajeros}}</span>
-        <ion-button (click)="entrarAlViaje(viaje.conductor)" color="dark">Unirse</ion-button>
-      </ion-card-content>
-    </ion-card>
-    
+    <div id="viajeTitle">
+      <div id="GoBack">
+        <ion-icon src="assets/back.svg" alt="" (click)="navegar('home')"></ion-icon>
+      </div>
+      <h3> Viajes Disponibles</h3>
+      <div id="reLoad">
+        <ion-icon src="assets/reload.svg" alt="" (click)="funciones.reloadPage()"></ion-icon>
+      </div>
+    </div>
+    <div id="Viaje" class="ion-shadow" *ngFor="let viaje of viajes; let i = index">
+      <div id="conductorViaje">
+        <div>
+          <span>{{viaje.destino}}</span>
+          <span>{{viaje.conductor}}</span>
+        </div>
+        <span>{{viaje.estado}}</span>
+      </div>
+      <div id="contenidoViaje">
+        <div id="datosViaje">
+          <div>
+            <span>Hora Salida:</span>
+            <span>{{viaje.horaSalida}}</span>
+          </div>
+          <div>
+            <span>Valor Pasaje:</span><span> ${{viaje.MontoCobrar}}</span>
+          </div>
+          <div><span>Pasajeros:</span>
+            <span> {{viaje.pasajeros.length}} / {{viaje.cantidadPasajeros}}</span>
+          </div>
+        </div>
+        <div id="mapa">
+          <div id="mapa">
+            <div #map id="map"></div>
+          </div>
+        </div>
+      </div>
+      <div id="botones">
+        <ion-button color="light" id="botonT" (click)="calculateAndDisplayRoute(viaje.destino)">Mostrar
+          Viaje</ion-button>
+        <ion-button color="light" id="botonT" (click)="entrarAlViaje(viaje.conductor)">Unirse Al Viaje</ion-button>
+      </div>
+    </div>
   </div>
 </ion-content>

@@ -1,226 +1,308 @@
 #contenedor {
-    display: flex;
-    flex-direction: column;  
-    align-items: center;
-    width: 100%;
-    padding: 0px 20px;
-    background-color: var(--fondo1);
-    transition: background-color 1s ease;
-  }
-  #map {
-    width: 100%;
-    height: 100vh;
-    z-index: 100;
-  }
-  
-  #input {
-    position: absolute;
-    bottom: calc(5rem + 10px);
-    z-index: 100;
-    width: 80%;
-    color: var(--log);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 3% 5%;
   background-color: var(--fondo1);
-    left: 10%;
-    height: 3rem;
-    border-radius: 10px;
-    border: 1px #cbcbcb solid;
-    padding: 0px 10px;
-  }
-  
-  #rutas {
-    position: absolute;
-    bottom: 15rem;
-    left: 10%;
-    width: 80%;
-    height: fit-content;
-    z-index: 100;
-    background-color: var(--fondo1);
-    border-radius: 10px;
-    padding: 10px;
-    color: var(--log);
-  }
-  
-  .ruta {
-    height: 2.4rem;
-    border-bottom: 1px #e3e3e3 solid;
-    line-height: 2.4rem;
-    
-  }
-  
-  .ruta:last-child{
-    border-bottom: none;
-  }
-  
-  #info-viaje{
-    position: absolute;
-    top: 0;
-    height: 3rem;
-    color: var(--log);
-    z-index: 101;
-    background-color: var(--fondo1);
+  transition: background-color 1s ease;
+}
+
+
+#pEncuentro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#pEncuentroC{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#datosViaje {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#tiempoEstimado,
+#detalles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50vh;
+  height: 50vh;
+  div {
+    font-size: large;
+    text-align: center;
     display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    width: 100%;
-    font-weight: bold;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+
+    span {
+      height: 2.5rem;
+    }
+  }}
+#viajeTitle{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  position: sticky;
+  div{
+    ion-icon{
+      font-size: 2rem;
+    }
   }
-  #info-viaje div{
+}
+#transferencia{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  div{
     display: flex;
     justify-content: center;
-    align-items: center;
-    column-gap: 5px;
-  }
-  #info-viaje div ion-icon{
-    font-size: 2rem;
-  }
-  .hidden-button {
-    display: none !important;
-  }
-  
-  #map {
-    height: 100%;
     width: 100%;
-    color: #1F1F1F !important;
-    border-radius: 20px;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+#descMonto {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#map {
+  width: 90%;
+  height: 100vh;
+  z-index: 100;
+}
+
+
+
+.ruta:last-child {
+  border-bottom: none;
+}
+
+#info-viaje {
+  position: absolute;
+  top: 0;
+  height: 3rem;
+  color: var(--log);
+  z-index: 101;
+  background-color: var(--fondo1);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+  font-weight: bold;
+}
+
+#info-viaje div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+}
+
+#info-viaje div ion-icon {
+  font-size: 2rem;
+}
+
+.hidden-button {
+  display: none !important;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+  color: #1F1F1F !important;
+  border-radius: 20px;
 }
 
 
 #mapa {
-    height: 50vh;
-    width: 100%; /* Añadido para asegurar el ancho completo */
-    position: relative; /* Mantener el mapa dentro de su contenedor */
+  height: 50vh;
+  width: 100%;
+  position: relative;
+}
+#UltimosDetalles{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
 }
 
+#viaje-img img {
+  border-radius: 20px;
+}
 
-  #viaje-img img{
-    border-radius: 20px; 
+#viaje-img {
+  border-radius: 20px;
+  margin: 5px 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+  width: 100%;
+
+  span {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
   }
-  
-  #viaje-img{
-    border-radius: 20px;
-    margin: 5px 10px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+}
+
+#ubicacion {
+  padding: 1rem;
+}
+
+#descripcion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  #fechaHora {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     width: 100%;
-    span{
-        display: flex;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-    }
   }
+}
 
-  #ubicacion{
-    padding: 1rem;
-  }
-  
-  #descripcion {
+#tiempoEstimado {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+
+  div {
+    font-size: small;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    #fechaHora{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        width: 100%;
-    }
-  }
-  #tiempoEstimado{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    div{
-        font-size: small;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        ion-icon{
-            font-size: 2rem;
-        }
-    }
-  }
 
-  #detalles{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    div{
-        font-size: small;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        ion-icon{
-            font-size: 2rem;
-        }
+    ion-icon {
+      font-size: 2rem;
     }
   }
+}
 
-  #detalles-loc{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+#detalles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+
+  div {
+    font-size: small;
     text-align: center;
-    div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ion-icon {
+      font-size: 2rem;
+    }
+  }
+}
+
+#detalles-loc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    ion-icon {
+      font-size: 2rem;
+    }
+
+    #descMonto {
+      font-weight: bold;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      ion-icon{
-        font-size: 2rem;
-      }
-      #descMonto{
-        font-weight: bold;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-       
-      }
+
     }
   }
+}
 
-  #botonera{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 100%;
-    margin: 1rem;
-    ion-button{
-        width: 80%;
-    }
+#botonera {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  margin: 1rem;
+
+  ion-button {
+    width: 80%;
   }
+}
 
-  .custom-location-button{
-    background-color: var(--fondo1);
-  }
+.custom-location-button {
+  background-color: var(--fondo1);
+}
 
 
-  ion-list{
-    width: 100%;
-    height: 100%;
-    color: var(--log);
-    background-color: var(--fondo1);
+ion-list {
+  width: 100%;
+  height: 100%;
+  color: var(--log);
+  background-color: var(--fondo1);
 
-  }
-  ion-item{
-    background-color: var(--fondo1);
-    --background: var(--fondo1);
-  }
- 
-ion-toolbar{
+}
+
+ion-item {
+  background-color: var(--fondo1);
+  --background: var(--fondo1);
+}
+
+ion-toolbar {
   color: var(--log);
 }
-  ion-list *{
-    background-color: var(--fondo1);
-  }
 
-  ion-icon{
-    font-size: 2.5rem;
-  }
+ion-list * {
+  background-color: var(--fondo1);
+}
 
- 
+ion-icon {
+  font-size: 2.5rem;
+}
+
+
+ion-modal {
+  --height: 50%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --background: rgb(14 116 144);
+  --color: white;
+}

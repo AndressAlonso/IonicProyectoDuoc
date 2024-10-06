@@ -1,28 +1,110 @@
-ion-card{
-    ion-card-content{
+#Viaje {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px 5px;
+}
+#botones{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px 0px 0px 0px;
+}
+
+#contenidoViaje {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+
+}
+
+
+#mapa {
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#map {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+    color: #1F1F1F !important;
+    border-radius: 20px;
+}
+
+#datosViaje {
+    padding: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    div{
+        width: 100%;
+        gap: 4px;
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        gap: 5px;
+        align-items: center;
+        flex-direction: column;
     }
 }
 
-#contenedor{
-    padding: 5px 0px; 
+#conductorViaje {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-weight: normal;
+    }
+}
+
+#viajeTitle {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    position: sticky;
+
+
+    div {
+        ion-icon {
+            font-size: 2rem;
+        }
+    }
+}
+
+#contenedor {
+    padding: 3% 5%;
     width: 100%;
     height: 100%;
     background-color: var(--fondo1);
 }
 
-ion-card{
+ion-card {
     background-color: var(--fondo1);
     border-radius: 10px;
     margin: 10px;
 }
 
-#title{
+#title {
     display: flex;
     width: 100%;
     justify-content: center;
 }
-

@@ -1,126 +1,223 @@
 #contenedor {
-    display: flex;
-    flex-direction: column;  
-    align-items: center;
-    width: 100%;
-    background-color: var(--fondo1);
-    transition: background-color 1s ease;
-    padding: 0px 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: var(--fondo1);
+  transition: background-color 1s ease;
+  padding: 3% 5%;
+}
 
-  .hidden-button {
-    display: none !important;
-  }
-  
-  #map {
-    height: 100%;
+#titleTransporte{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  flex-direction: column;
+}
+
+.hidden-button {
+  display: none !important;
+}
+
+#map {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
+  color: #1F1F1F !important;
+  border-radius: 20px;
+}
+
+#mapa {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+}
+#Transferencia{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  text-wrap: pretty;
+  div{
     display: flex;
     justify-content: center;
-    width: 100%;  
-    flex:1;
-    color: #1F1F1F !important;
-    border-radius: 20px;
-  }
-  #mapa {
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-  }
-
-  #viaje-img img{
-    border-radius: 20px; 
-  }
-  
-  #viaje-img{
-    border-radius: 20px;
-    margin: 5px 10px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
-    width: 100%;
-    span{
-        display: flex;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-    }
-  }
-
-  #ubicacion{
-    padding: 1rem;
-  }
-  
-  #descripcion {
-    display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    #fechaHora{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        width: 100%;
-    }
   }
-  #tiempoEstimado{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    div{
-        font-size: small;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        ion-icon{
-            font-size: 2rem;
-        }
-    }
-  }
+}
 
-  #detalles{
+#viaje-img img {
+  border-radius: 20px;
+}
+
+#viaje-img {
+  border-radius: 20px;
+  margin: 5px 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+  width: 100%;
+
+  span {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    div{
-        font-size: small;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        ion-icon{
-            font-size: 2rem;
-        }
-    }
-  }
-  #inputDestino{
-    width: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-  }
-  #detalles-loc{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     text-align: center;
-    div{
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+#ubicacion {
+  padding: 1rem;
+}
+
+#descripcion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  #fechaHora {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+}
+
+#map {
+  width: 90%;
+  height: 100vh;
+  z-index: 100;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+  color: #1F1F1F !important;
+  border-radius: 20px;
+}
+
+#datosViaje {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+#tiempoEstimado,
+#detalles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50vh;
+  height: 50vh;
+  div {
+    font-size: large;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+
+    span {
+      height: 2.5rem;
+    }
+  }
+
+
+}
+#viajeTitle{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  position: sticky;
+  div{
+    ion-icon{
+      font-size: 2rem;
+    }
+  }
+}
+
+#mapa {
+  height: 50vh;
+  width: 100%;
+  position: relative;
+}
+
+#tiempoEstimado {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+
+  div {
+    font-size: small;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ion-icon {
+      font-size: 2rem;
+    }
+  }
+}
+
+#detalles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+
+  div {
+    font-size: small;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ion-icon {
+      font-size: 2rem;
+    }
+  }
+}
+
+#inputDestino {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+#detalles-loc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    ion-icon {
+      font-size: 2rem;
+    }
+
+    #descMonto {
+      font-weight: bold;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      ion-icon{
-        font-size: 2rem;
-      }
-      #descMonto{
-        font-weight: bold;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-       
-      }
+
     }
   }
+}

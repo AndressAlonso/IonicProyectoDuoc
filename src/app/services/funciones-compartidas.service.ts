@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,17 @@ export class FuncionesCompartidasService {
   usuarioLogeado: string = "Ninguno";
   public usuarios: any[] = []
   public icono = 'Dark';
-  constructor(private toast: ToastController, public router: Router) {
+  constructor(private toast: ToastController, public router: Router,private navCtrl: NavController ) {
+  }
+  handleBackButton() {
+    this.navCtrl.navigateRoot('/home');
+  }
+  goBack() {
+    this.navCtrl.back();
+  }
+  
+  reloadPage() {
+    location.reload();
   }
   navegar(page: string) {
     this.router.navigate([page]);
@@ -30,7 +40,10 @@ export class FuncionesCompartidasService {
         card?.setAttribute('color', 'light');
       });
       var header = document.querySelectorAll('ion-header');
-
+      const botonesV = document.querySelectorAll('#botonT');
+      botonesV.forEach(boton => {
+        boton?.setAttribute('color', 'light');
+      });
       a.forEach(inp => {
         inp?.setAttribute('aria-label', 'Dark input');
         inp?.setAttribute('color', 'light');
@@ -49,6 +62,10 @@ export class FuncionesCompartidasService {
       var cards = document.querySelectorAll('#card');
       cards.forEach(card => {
         card?.setAttribute('color', 'dark');
+      });
+      const botonesV = document.querySelectorAll('#botonT');
+      botonesV.forEach(boton => {
+        boton?.setAttribute('color', 'dark');
       });
       console.log(a)
       a.forEach(inp => {
@@ -71,10 +88,11 @@ export class FuncionesCompartidasService {
       message: texto,
       duration: 1500,
       positionAnchor: 'footer',
-      cssClass: 'rounded-toast'
+      cssClass: 'rounded-toast',
+      position: 'bottom'
     });
+
     await toast.present();
-   
   }
 
 

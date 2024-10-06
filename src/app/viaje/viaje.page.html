@@ -5,8 +5,8 @@
       <ion-title class="ion-text-center">
         Viaje
       </ion-title>
-    <ion-icon src="assets/{{funciones.icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
-  </div>
+      <ion-icon src="assets/{{funciones.icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -17,23 +17,40 @@
       
     </div>
     <div id="inputs">
-      <ion-input id="inputV" type="ViajeDestino" label="Destino" labelPlacement="floating"
-        helperText="Ingresa tu destino" errorText="" aria-label="Light input" color="light" autofocus="true" [(ngModel)]="destino" ></ion-input>
+      <div>
+        <ion-input id="inputV" type="text" label="Destino" labelPlacement="floating" helperText="Ingresa tu destino"
+          errorText="" aria-label="Light input" color="light" autofocus="true" [(ngModel)]="destino"
+          (input)="updateSearchResults()" (ionFocus)="mostrarRutas()" (ionBlur)="ocultarRutas()"></ion-input>
+
+        <div id="rutas" *ngIf="mostrarAutocomplete && autocompleteItems.length > 0">
+          <div class="ruta" *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+            {{ item.description }}
+          </div>
+        </div>
+      </div>
+
       <ion-input id="inputV" type="PuntoEncuentro" label="Punto de Encuentro" labelPlacement="floating"
-        helperText="Ingresa el Punto de encuentro" errorText="" aria-label="Light input" color="light" autofocus="true" [(ngModel)]="puntoEncuentro"></ion-input>
+        helperText="Ingresa el Punto de encuentro" errorText="" aria-label="Light input" color="light" autofocus="true"
+        [(ngModel)]="puntoEncuentro"></ion-input>
 
       <ion-input id="inputV" type="CantidadPasajeros" label="Cantidad de Pasajeros" labelPlacement="floating"
-        helperText="Capacidad de pasajeros que puedes llevar" errorText="" aria-label="Light input"
-        color="light" [(ngModel)]="cantidadPasajeros"></ion-input>
+        helperText="Capacidad de pasajeros que puedes llevar" errorText="" aria-label="Light input" color="light"
+        [(ngModel)]="cantidadPasajeros"></ion-input>
 
-      <ion-input id="inputV" type="horaSalida" label="Hora de salida" labelPlacement="floating"
-        helperText="Ingresa hora de salida" errorText="" aria-label="Light input" color="light" [(ngModel)]="horaSalida"></ion-input>
+      <ion-input id="inputV" type="text" label="Hora de salida" labelPlacement="floating"
+        helperText="Ingresa hora de salida (HH:mm)" errorText="La hora ingresada no es válida." aria-label="Light input"
+        color="light" [(ngModel)]="horaSalida" maxlength="5" [class.error]="isError"
+        ></ion-input>
+
+     
 
       <ion-input id="inputV" type="CostoxPasajero" label="Monto a cobrar" labelPlacement="floating"
-        helperText="Ingresa tu viaje de destino" errorText="" aria-label="Light input" color="light"[(ngModel)]="MontoCobrar" ></ion-input>
+        helperText="Ingresa tu viaje de destino" errorText="" aria-label="Light input" color="light"
+        [(ngModel)]="MontoCobrar"></ion-input>
 
       <ion-input id="inputV" type="ComentariosExtras" label="Comentarios" labelPlacement="floating"
-        helperText="Comentarios (Opcional)" errorText="" aria-label="Light input" color="light" [(ngModel)]="comentarios"></ion-input>
+        helperText="Comentarios (Opcional)" errorText="" aria-label="Light input" color="light"
+        [(ngModel)]="comentarios"></ion-input>
     </div>
     <ion-button id="btnInViaje" color="translucent" (click)="VerificarCampos()">Registrar Viaje</ion-button>
   </div>
