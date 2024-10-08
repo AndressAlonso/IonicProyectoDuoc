@@ -1,13 +1,15 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { AnimationController } from '@ionic/angular';
+import { AnimationController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FuncionesCompartidasService } from '../services/funciones-compartidas.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  email = ''
   usuario = "";
   clave = "";
   usuarios: any[] = [];
@@ -35,12 +37,40 @@ export class LoginPage implements OnInit {
     }
   }
 
-  constructor(private anim: AnimationController, private router: Router, public funciones: FuncionesCompartidasService) {
+  constructor( private loadingCtrl: LoadingController,
+    private http: HttpClient,private anim: AnimationController, private router: Router, public funciones: FuncionesCompartidasService) {
     if (localStorage.getItem("usuarios")) {
       this.usuarios = JSON.parse(localStorage.getItem("usuarios")!);
     }
   }
 
+  async resetPass() {
+    for (let u of this.usuarios) {
+      if (u.email == this.email) {
+        const loading = await this.loadingCtrl.create({
+          message: 'Cargando...',
+        });
+        loading.present()
+        let nueva = Math.random().toString(36).slice(-6)
+        u.clave = nueva
+        let body = {
+          "nombre": u.nombre,
+          "app": "TeLlevoApp",
+          "clave": nueva,
+          "email": u.email
+        }
+        this.http.post("https://myths.cl/api/reset_password.php", body)
+        .subscribe((data)=>{
+          console.log(data)
+          this.showToast('Se ha enviado un correo de recuperacion de contraseña')
+          loading.dismiss()
+        })
+        return
+      }
+    }
+    this.funciones.showToast('No hay Ningun Usuario asociado a ese Email')
+    console.log("Usuario no existe!.")
+  }
   ionViewWillEnter() {
     if (localStorage.getItem("usuarios")) {
       this.usuarios = JSON.parse(localStorage.getItem("usuarios")!);
