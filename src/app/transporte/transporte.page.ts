@@ -20,6 +20,10 @@ export class TransportePage implements OnInit {
 
   duracion = ""
 
+
+
+  isModalOpen = false;
+
   selectedSegment = 'default';
 
   @ViewChild('map') mapElement: ElementRef | undefined;
@@ -31,6 +35,8 @@ export class TransportePage implements OnInit {
   public end: any = "Pomaire";
 
   public directionsService: any;
+
+
 
   public directionsDisplay: any;
   constructor(private router: Router, public funciones: FuncionesCompartidasService, public zone: NgZone, private platform: Platform) {
@@ -48,6 +54,7 @@ export class TransportePage implements OnInit {
     });
 
   }
+
   ngOnInit() {
 
   }
@@ -59,7 +66,7 @@ export class TransportePage implements OnInit {
       this.initMap()
 
     })
-   
+
   }
   getViajePasajero() {
     const usuarioConectado = this.funciones.usuarioLogeado;
@@ -107,6 +114,17 @@ export class TransportePage implements OnInit {
     } else {
       console.log('No se encontró el viaje para el usuario logeado:' + this.funciones.usuarioLogeado);
     }
+  }
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+  MostrarMapaViaje(Destino: any) {
+    console.log(this.isModalOpen)
+    this.isModalOpen = true
+    this.calculateAndDisplayRoute(Destino)
+    console.log(Destino)
+    const mapa = document.getElementById("mapa") 
+    console.log(mapa)
   }
   initMap() {
 

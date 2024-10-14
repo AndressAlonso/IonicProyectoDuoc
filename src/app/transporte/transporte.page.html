@@ -42,17 +42,37 @@
             <span> {{viaje.pasajeros.length}} / {{viaje.cantidadPasajeros}}</span>
           </div>
         </div>
-        <div id="mapa">
-          <div id="mapa">
-            <div #map id="map"></div>
-          </div>
-        </div>
       </div>
       <div id="botones">
-        <ion-button color="light" id="botonT" (click)="calculateAndDisplayRoute(viaje.destino)">Mostrar
-          Viaje</ion-button>
+        <ion-button (click)="MostrarMapaViaje(viaje.destino)" expand="block">Ver Viaje</ion-button>
         <ion-button color="light" id="botonT" (click)="entrarAlViaje(viaje.conductor)">Unirse Al Viaje</ion-button>
       </div>
+      <div id="mapa">
+        <div id="mapa">
+          <div #map id="map"></div>
+        </div>
+      </div>
     </div>
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Transferencias</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpen(false)">Cerrar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="" style="background-color: var(--fondo1);">
+          
+          <div id="mapa">
+            <div id="mapa">
+              <div #map id="map"></div>
+            </div>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </div>
+
 </ion-content>
