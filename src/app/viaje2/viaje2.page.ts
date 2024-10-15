@@ -159,15 +159,17 @@ export class Viaje2Page {
     return this.funciones.getIcono();
   }
 
-EliminarViaje(){
-  const viajeaEliminar = this.viajes.find(viaje => viaje.conductor == this.viajeUsuario.conductor)
-  console.log(viajeaEliminar)
-  console.log(this.viajes)
-  this.viajes.splice(viajeaEliminar)
-  console.log(this.viajes)
-  localStorage.setItem("viajes", JSON.stringify(this.viajes))
-  this.navegar('resumen-viaje')
-}
+  EliminarViaje(){
+    const viajeaEliminar = this.viajes.findIndex(viaje => viaje.conductor == this.viajeUsuario.conductor)
+    console.log('Viaje a Eliminar: '+ viajeaEliminar)
+    console.log(viajeaEliminar)
+    console.log(this.viajes)
+    this.viajes.splice(viajeaEliminar, 1)
+    console.log(this.viajes)
+    localStorage.setItem("viajes", JSON.stringify(this.viajes))
+    this.funciones.showToast('Has Terminado el viaje!')
+    this.navegar('resumen-viaje')
+  }
   initMap() {
 
     this.directionsService = new google.maps.DirectionsService;

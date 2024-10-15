@@ -72,7 +72,7 @@ export class Transporte2Page implements OnInit {
     try {
       const image: Photo = await Camera.getPhoto({
         resultType: CameraResultType.DataUrl, // Usar DataUrl para la imagen
-        source: CameraSource.Camera, // Usa CameraSource en lugar de "CAMERA"
+        source: CameraSource.Photos, // Usa CameraSource en lugar de "CAMERA"
         quality: 100,
       });
 

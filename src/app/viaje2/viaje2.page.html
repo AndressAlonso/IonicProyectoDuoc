@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" >
+<ion-content [fullscreen]="true">
   <div id="contenedor">
     <div id="viajeTitle">
       <div id="GoBack">
@@ -21,7 +21,7 @@
         <ion-icon src="assets/reload.svg" alt="" (click)="funciones.reloadPage()"></ion-icon>
       </div>
     </div>
-    
+
     <span>{{viajeUsuario?.estado}} </span>
 
     <div id="viaje-img">
@@ -41,10 +41,9 @@
     <h2>Detalles</h2>
     <div class="Detalless">
       <div id="pEncuentroC">
-        
+
       </div>
       <div id="datosViaje">
-      
         <div id="tiempoEstimado">
           <div>
             <ion-icon src="assets/location.svg" alt=""></ion-icon>
@@ -64,7 +63,7 @@
             <ion-icon src="assets/passenger.svg" alt=""></ion-icon>
             <span>Asientos Disponibles {{viajeUsuario?.pasajeros.length}} / {{viajeUsuario?.cantidadPasajeros}}</span>
           </div>
-          <div> 
+          <div>
             <ion-icon src="assets/money.svg" alt=""></ion-icon>
             <span>${{viajeUsuario?.MontoCobrar}} por persona</span>
           </div>
@@ -74,27 +73,27 @@
               <span>Punto de Encuentro: {{viajeUsuario?.puntoEncuentro}}</span>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>
-    
-   <div id="UltimosDetalles">
-    <div id="detalles-loc">
-      <h2>Monto a Recolectar</h2>
-      <p>${{viajeUsuario?.MontoCobrar}} pesos x Pasajero({{viajeUsuario?.pasajeros.length}})</p>
-      <p>Monto Total: ${{getTotal()}}</p>
-    </div>
-    
-    <div id="botonera">
-      <ion-button (click)="cambiarEstadoViaje('Viaje Iniciado')" color="tertiary">Comenzar Viaje</ion-button>
-      <ion-button (click)="EliminarViaje()" color="danger">Terminar Viaje</ion-button>
-      <ion-button id="open-modal" (click)="actualizarViaje()" expand="block">Ver Pasajeros</ion-button>
-      <ion-button expand="block" (click)="setOpen(true)" color="light">Ver Transferencias</ion-button>
-    </div>
-  </div>
 
-   </div>
+    <div id="UltimosDetalles">
+      <div id="detalles-loc">
+        <h2>Monto a Recolectar</h2>
+        <p>${{viajeUsuario?.MontoCobrar}} pesos x Pasajero({{viajeUsuario?.pasajeros.length}})</p>
+        <p>Monto Total: ${{getTotal()}}</p>
+      </div>
+
+      <div id="botonera">
+        <ion-button (click)="cambiarEstadoViaje('Viaje Iniciado')" color="tertiary">Comenzar Viaje</ion-button>
+        <ion-button (click)="EliminarViaje()" color="danger">Terminar Viaje</ion-button>
+        <ion-button id="open-modal" (click)="actualizarViaje()" expand="block">Ver Pasajeros</ion-button>
+        <ion-button expand="block" (click)="setOpen(true)" color="light">Ver Transferencias</ion-button>
+      </div>
+    </div>
+
+  </div>
   <ion-modal #modal trigger="open-modal">
     <ng-template>
       <ion-content>
@@ -149,7 +148,7 @@
             </div>
           </div>
         </div>
-        
+
       </ion-content>
     </ng-template>
   </ion-modal>

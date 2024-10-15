@@ -11,11 +11,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <div id="contenedor">
-    <div>
-      <span></span>
-    </div>
-    <ion-button expand="block" (click)="setOpen(true)" color="light">Ver Transferencias</ion-button>
+  <div id="contenedor">
+    <!-- <div *ngIf="viajeUsuario; else noViaje">
+      <h2>Detalles del Viaje</h2>
+      <p><strong>Destino:</strong> {{ viajeUsuario.destino }}</p>
+      <p><strong>Punto de Encuentro:</strong> {{ viajeUsuario.puntoEncuentro }}</p>
+      <p><strong>Cantidad de Pasajeros:</strong> {{ viajeUsuario.cantidadPasajeros }}</p>
+      <p><strong>Hora de Salida:</strong> {{ viajeUsuario.horaSalida }}</p>
+      <p><strong>Monto a Cobrar:</strong> {{ viajeUsuario.MontoCobrar}}</p>
+      <p><strong>Comentarios:</strong> {{ viajeUsuario.comentarios }}</p>
+      <p><strong>Estado:</strong> {{ viajeUsuario.estado }}</p>
+    </div> 
+
+    <ng-template #noViaje>
+      <p>No hay información del viaje disponible.</p>
+    </ng-template>-->
+    <h2>Viaje Cerrado</h2>
       <ion-button (click)="navegar('home')" color="dark">Volver al inicio</ion-button>
     </div>
 </ion-content>

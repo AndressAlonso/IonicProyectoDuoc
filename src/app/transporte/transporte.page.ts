@@ -56,17 +56,16 @@ export class TransportePage implements OnInit {
   }
 
   ngOnInit() {
-
+    if (localStorage.getItem('viajes')) {
+      this.viajes = JSON.parse(localStorage.getItem('viajes')!);
+    }
   }
 
   ionViewDidEnter() {
     this.getViajePasajero();
     this.platform.ready().then(() => {
-
       this.initMap()
-
     })
-
   }
   getViajePasajero() {
     const usuarioConectado = this.funciones.usuarioLogeado;
@@ -80,6 +79,17 @@ export class TransportePage implements OnInit {
     } else {
       console.log('No hay viajes para el usuario conectado')
     }
+
+    const conductor = this.viajes.find(viaje => viaje.conductor === this.funciones.usuarioLogeado);
+    console.log(conductor)
+    if (conductor.conductor === this.funciones.usuarioLogeado) {
+      console.log(conductor)
+      console.log('No puedes entrar a un viaje teniendo un viaje activo');
+      console.log(viajeDelUsuario)
+      this.funciones.showToast('Debes Terminar tu viaje Activo');
+      this.navegar('viaje')
+      return;
+    }
   }
   entrarAlViaje(usuarioviajeP: string) {
     if (!this.viajes || this.viajes.length === 0) {
@@ -88,13 +98,7 @@ export class TransportePage implements OnInit {
 
     const viaje = this.viajes.find(viaje => viaje.conductor === usuarioviajeP);
 
-    const conductor = this.viajes.find(viaje => viaje.conductor === this.funciones.usuarioLogeado);
 
-    if (conductor) {
-      console.log('No puedes entrar a tu propio viaje');
-      this.funciones.showToast('No puedes entrar a tu propio viaje');
-      return;
-    }
 
     if (viaje) {
       const pasajeros: any[] = viaje.pasajeros;
@@ -123,7 +127,7 @@ export class TransportePage implements OnInit {
     this.isModalOpen = true
     this.calculateAndDisplayRoute(Destino)
     console.log(Destino)
-    const mapa = document.getElementById("mapa") 
+    const mapa = document.getElementById("mapa")
     console.log(mapa)
   }
   initMap() {
@@ -160,7 +164,7 @@ export class TransportePage implements OnInit {
 
 
 
-    // Try HTML5 geolocation.
+  
 
     if (navigator.geolocation) {
 
