@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { style } from '@angular/animations';
 import { NavController, Platform } from '@ionic/angular';
 declare var google: any;
-
+import { ModalController,ModalOptions } from '@ionic/angular';
 
 @Component({
   selector: 'app-viaje2',
@@ -51,7 +51,7 @@ export class Viaje2Page {
   });
 
 
-  constructor(private router: Router, public funciones: FuncionesCompartidasService, public zone: NgZone, private platform: Platform) {
+  constructor(private modalController: ModalController,private router: Router, public funciones: FuncionesCompartidasService, public zone: NgZone, private platform: Platform) {
     if (localStorage.getItem('usuarios')) {
       this.usuarios = JSON.parse(localStorage.getItem('usuarios')!);
     }
@@ -64,9 +64,9 @@ export class Viaje2Page {
         localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
       }
     });
-    this.platform.backButton.subscribeWithPriority(10, () => {
-      this.funciones.handleBackButton();
-    });
+  }
+  async closeModal() {
+    await this.modalController.dismiss();
   }
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -84,7 +84,7 @@ export class Viaje2Page {
   }
 
   ionViewDidEnter() {
-
+    
     if (localStorage.getItem('usuarios')) {
       this.usuarios = JSON.parse(localStorage.getItem('usuarios')!);
     }
@@ -143,8 +143,13 @@ export class Viaje2Page {
   }
   cambiarEstadoViaje(texto: string) {
     this.viajeUsuario.estado = texto;
+    console.log(this.viajeUsuario)
+    console.log(this.viajes)
+    const indexViajeActualizar = this.viajes.findIndex(viaje => viaje.conductor === this.viajeUsuario.conductor);
+    this.viajes[indexViajeActualizar] = this.viajeUsuario
     localStorage.setItem('viajes', JSON.stringify(this.viajes));
     this.funciones.showToast(texto);
+    
   }
 
   navegar(ruta: string) {
@@ -170,6 +175,7 @@ export class Viaje2Page {
     this.funciones.showToast('Has Terminado el viaje!')
     this.navegar('resumen-viaje')
   }
+
   initMap() {
 
     this.directionsService = new google.maps.DirectionsService;
@@ -245,6 +251,7 @@ export class Viaje2Page {
     this.calculateAndDisplayRoute();
 
   }
+
   obtenerDireccion(pos: google.maps.LatLngLiteral) {
     let geocoder = new google.maps.Geocoder();
   
@@ -262,7 +269,6 @@ export class Viaje2Page {
     
   }
   
-
   calculateAndDisplayRoute() {
 
     this.directionsService.route({

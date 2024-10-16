@@ -53,6 +53,7 @@ export class LoginPage implements OnInit {
         loading.present()
         let nueva = Math.random().toString(36).slice(-6)
         u.clave = nueva
+        localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
         let body = {
           "nombre": u.nombre,
           "app": "TeLlevoApp",
