@@ -11,11 +11,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div id="cerrarcuenta">
+ <!-- <div id="cerrarcuenta">
     <ion-button (click)="logout()" color="translucent"><ion-icon src="assets/logout.svg" id="cerrar"></ion-icon></ion-button>
-  </div>
+  </div>-->
 <div id="fondo">
-  <div>{{this.funciones.usuarioLogeado}}</div>
+  <div>Bienvenido {{this.funciones.usuarioLogeado}}</div>
   <ion-card (click)="navegar('viaje')" id="cardh"> 
     <ion-card-header>
       <ion-card-title>Registrar Viaje </ion-card-title>
@@ -39,4 +39,18 @@
 
 </div>
 
+<div>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <!--Boton para cerrar sesion-->
+      <ion-tab-button tab="home">
+        <ion-icon src="assets/logout.svg" (click)="logout()" color="translucent" ></ion-icon>
+      </ion-tab-button>
+      <!--Boton del perfil de usuario-->
+      <ion-tab-button tab="radio">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</div>
 </ion-content>
