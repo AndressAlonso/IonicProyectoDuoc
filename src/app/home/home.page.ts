@@ -49,7 +49,7 @@ export class HomePage {
   }
 
   navegar(page: string): void {
-    this.router.navigate([`/${page}`]);
+    this.router.navigate([page]);
   }
 
   getInformacionUsuario(){
