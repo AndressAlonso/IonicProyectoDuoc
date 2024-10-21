@@ -42,7 +42,7 @@ export class RContrasenaPage implements OnInit {
     if (User === '' || clave === '' || User.length <= 6 || clave.length <= 6) {
       this.showToast('Los campos deben tener más de 6 caracteres y no deben estar en blanco!');
     }
-    else if (!emailRegex.test(email)) { this.showToast('El formato del correo electrónico no es válido!'); } else { const usuarioExistente = this.usuarios.find(user => user.usuario === User); if (usuarioExistente) { this.showToast('Ese nombre de usuario ya está en uso!'); } else { this.Registro({ usuario: User, contraseña: clave, logIn: false, email: email }); this.showToast('Te has registrado exitosamente!'); this.funciones.navegar('login'); } }
+    else if (!emailRegex.test(email)) { this.showToast('El formato del correo electrónico no es válido!'); } else { const usuarioExistente = this.usuarios.find(user => user.usuario === User); if (usuarioExistente) { this.showToast('Ese nombre de usuario ya está en uso!'); } else { this.Registro({ usuario: User, contraseña: clave, logIn: false, email: email, viajes: [] }); this.showToast('Te has registrado exitosamente!'); this.funciones.navegar('login'); } }
   }
 
   Registro(usuario: any) {

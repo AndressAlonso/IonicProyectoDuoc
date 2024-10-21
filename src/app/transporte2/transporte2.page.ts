@@ -158,7 +158,14 @@ export class Transporte2Page implements OnInit {
     });
 
     const Indexpasajero = viajeDelUsuario.pasajeros.findIndex((pasajero: { usuario: any; }) => pasajero.usuario === usuarioLogeado);
-
+    if(localStorage.getItem("usuarios")){
+      this.usuarios = JSON.parse(localStorage.getItem("usuarios")!)
+    }
+    this.usuarios.forEach(user =>{
+      if (user.usuarios === this.funciones.usuarioLogeado){
+        user.viajes.push(viajeDelUsuario)
+      }
+    })
     viajeDelUsuario.pasajeros.splice(Indexpasajero, 1);
     localStorage.setItem('viajes', JSON.stringify(this.viajes))
     console.log(this.viajes)

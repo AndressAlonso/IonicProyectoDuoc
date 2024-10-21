@@ -11,6 +11,53 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Informacion Cuenta</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Volver</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+   
+          <div>
+            <span>Tu Usuario: {{funciones.usuarioLogeado}}</span>
+          </div>
+          <div>
+            <span>Tu Email: {{usuarioInfo.email}}</span>
+          </div>
+          <h3 class="ion-text-center">Tus Viajes</h3>
+          <div id="Viaje" class="ion-shadow" *ngFor="let viaje of usuarioViajes">
+            <div id="conductorViaje">
+              <div>
+                <span> Destino: {{viaje.destino}}</span>
+                <span>Conductor: {{viaje.conductor}}</span>
+              </div>
+             
+            </div>
+            <div id="contenidoViaje">
+              <div id="datosViaje">
+                <div>
+                  <span>Hora Salida:</span>
+                  <span>{{viaje.horaSalida}}</span>
+                </div>
+                <div>
+                  <span>Valor Pasaje:</span><span> ${{viaje.MontoCobrar}}</span>
+                </div>
+                <div><span>Pasajeros:</span>
+                  <span> {{viaje.pasajeros.length}} / {{viaje.cantidadPasajeros}}</span>
+                </div>
+              </div>
+            </div>
+        
+          </div>
+      
+      </ion-content>
+    </ng-template>
+  </ion-modal>
  <!-- <div id="cerrarcuenta">
     <ion-button (click)="logout()" color="translucent"><ion-icon src="assets/logout.svg" id="cerrar"></ion-icon></ion-button>
   </div>-->
@@ -43,12 +90,12 @@
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <!--Boton para cerrar sesion-->
-      <ion-tab-button tab="home">
+      <ion-tab-button >
         <ion-icon src="assets/logout.svg" (click)="logout()" color="translucent" ></ion-icon>
       </ion-tab-button>
       <!--Boton del perfil de usuario-->
-      <ion-tab-button tab="radio">
-        <ion-icon name="person-outline"></ion-icon>
+      <ion-tab-button (click)="setOpen(true)">
+        <ion-icon  name="person-outline"></ion-icon>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

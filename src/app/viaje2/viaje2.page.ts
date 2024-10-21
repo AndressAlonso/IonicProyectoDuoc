@@ -165,11 +165,23 @@ export class Viaje2Page {
   }
 
   EliminarViaje(){
-    const viajeaEliminar = this.viajes.findIndex(viaje => viaje.conductor == this.viajeUsuario.conductor)
+    const viajeaEliminarIndex = this.viajes.findIndex(viaje => viaje.conductor == this.viajeUsuario.conductor)
+    const viajeaEliminar = this.viajes.find(viaje => viaje.conductor == this.viajeUsuario.conductor)
     console.log('Viaje a Eliminar: '+ viajeaEliminar)
-    console.log(viajeaEliminar)
+    console.log(viajeaEliminarIndex)
     console.log(this.viajes)
-    this.viajes.splice(viajeaEliminar, 1)
+    if (localStorage.getItem("usuarios")){
+      this.usuarios = JSON.parse(localStorage.getItem("usuarios")!)
+    }
+    this.usuarios.forEach(user => {
+      if (user.usuario === this.funciones.usuarioLogeado){
+        user.viajes.push(viajeaEliminar)
+        console.log(user)
+      }
+      
+    })
+    localStorage.setItem("usuarios", JSON.stringify(this.usuarios))
+    this.viajes.splice(viajeaEliminarIndex, 1)
     console.log(this.viajes)
     localStorage.setItem("viajes", JSON.stringify(this.viajes))
     this.funciones.showToast('Has Terminado el viaje!')
