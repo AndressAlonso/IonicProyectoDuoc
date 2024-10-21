@@ -8,6 +8,21 @@
   gap: 20px;
   background-color: var(--fondo1);
 }
+
+#footer{
+  background-color: var(--fondo1) !important; /* Cambia el color de fondo */
+  
+  ion-tab-button {
+    --background: var(--fondo1);
+    --color: var(--color); /* Cambia el color del texto y de los íconos */
+    
+    ion-icon {
+      --color: var(--color); /* Cambia el color de los íconos */
+    }
+  }
+}
+
+
 #Viaje {
   display: flex;
   flex-direction: column;

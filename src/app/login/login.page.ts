@@ -32,9 +32,7 @@ export class LoginPage implements OnInit {
       .direction("alternate")
       .fromTo("transform", "rotate(-15deg)", "rotate(15deg)")
       .play()
-    if (localStorage.getItem("usuarios")) {
-      this.usuarios = JSON.parse(localStorage.getItem("usuarios")!);
-    }
+    
   }
 
   constructor( private loadingCtrl: LoadingController,
@@ -52,7 +50,7 @@ export class LoginPage implements OnInit {
         });
         loading.present()
         let nueva = Math.random().toString(36).slice(-6)
-        u.clave = nueva
+        u.contraseña = nueva
         localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
         let body = {
           "nombre": u.nombre,
@@ -80,6 +78,7 @@ export class LoginPage implements OnInit {
   }
   VerificarUsuarioConectado() {
     const usuarioConectado = this.usuarios.find(usuario => {
+      console.log(usuario)
       if (usuario.logIn == true) {
         this.funciones.usuarioLogeado = usuario.usuario;
         localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
@@ -92,7 +91,6 @@ export class LoginPage implements OnInit {
     this.VerificarUsuarioConectado();
   }
   ionWillLeave() {
-
     if (localStorage.getItem("usuarios")) {
       this.usuarios = JSON.parse(localStorage.getItem("usuarios")!);
     }
@@ -107,6 +105,7 @@ export class LoginPage implements OnInit {
   }
   login() {
     this.usuarios.forEach(user => {
+      console.log(user)
       if (this.usuario === '' || this.clave === '') {
         this.showToast('Los campos no pueden estar vacios');
       } else {

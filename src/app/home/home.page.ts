@@ -62,13 +62,16 @@ export class HomePage {
         console.log(user.viajes)
         this.usuarioViajes = user.viajes
       }
-    })
+    });
   }
   logout(){
     this.usuarios.forEach(user => {
       if (user.logIn == true) {
         user.logIn = false;
         this.funciones.usuarioLogeado = "Ninguno";
+        console.log(user)
+      }else{
+        console.log("No hay usuario logeado")
       }
     });
     localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
